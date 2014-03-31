@@ -60,11 +60,6 @@ export LC_ALL=ja_JP.UTF-8
 source $HOME/.zsh/z.sh
 
 alias tmux="TERM=screen-256color-bce tmux"
-alias tovegamysql='mysql -uroot -pgree -h 210.148.145.176 -P 14751 -A'
-alias tomysql='mysql -uroot -p -h 210.148.145.176 -P 14351 -A'
-alias toknightmysql='mysql -uroot -p -h 210.148.145.176 -P 13951 -A'
-alias togs7='ssh gs7.in.gree.jp'
-alias toknighttest04='sudo -u gree ssh knight-test04.dev.gree.jp'
 
 # vim <-> shell
 setopt hist_ignore_space
