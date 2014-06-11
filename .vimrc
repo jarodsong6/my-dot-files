@@ -145,14 +145,18 @@ map <C-j> :vsp <CR>:GtagsCursor<CR>
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
-" vundle
-set nocompatible
-filetype off
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-filetype plugin indent on
+"" unite.vim
+" prefix
+nnoremap [unite] <Nop>
+nmap <Leader>f [unite]
+"settings
+let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable=1
+let g:unite_source_file_rec_max_cache_files=500
+"key mapping
+nnoremap <silent> [unite]f :<C-u>Unite -no-split file_mru buffer file_rec/async<CR>
+nnoremap <silent> [unite]y :<C-u>Unite -no-split history/yank<CR>
+nnoremap <silent> [unite]r :<C-u>Unite -no-split -buffer-name=register register<CR>
 
 " matchit
 runtime macros/matchit.vim
@@ -171,23 +175,60 @@ function! ToggleWindowSize()
     endif
 endfunction
 
-" my bundles
-Bundle 'gmarik/vundle'
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'scrooloose/nerdtree'
-Bundle 'vim-scripts/tComment'
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'vim-scripts/gtags.vim'
-Bundle 'vim-scripts/taglist.vim'
-" Bundle 'joonty/vdebug.git'
-
 "NERDTree
 nmap <Leader>n :NERDTreeToggle<CR>
 let g:NERDTreeDirArrows=0
 let g:NERDTreeWinSize=50
+
+"" Neobundle
+if has('vim_starting')
+  set nocompatible
+
+  " Required:
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" My Bundles here:
+NeoBundle 'gmarik/vundle'
+NeoBundle 'L9'
+NeoBundle 'FuzzyFinder'
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'vim-scripts/tComment'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'vim-scripts/gtags.vim'
+NeoBundle 'vim-scripts/taglist.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
+
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
+let vimproc_updcmd = has('win64') ?
+      \ 'tools\\update-dll-mingw 64' : 'tools\\update-dll-mingw 32'
+execute "NeoBundle 'Shougo/vimproc.vim'," . string({
+      \ 'build' : {
+      \     'windows' : vimproc_updcmd,
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ })
