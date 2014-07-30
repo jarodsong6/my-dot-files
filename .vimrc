@@ -1,12 +1,56 @@
-syntax on
+"" Neobundle
+if has('vim_starting')
+  set nocompatible
+
+  " Required:
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" air-line status
+let g:airline_theme             = 'powerlineish'
+let g:airline_enable_branch     = 1
+let g:airline_enable_syntastic  = 1
+let g:airline_powerline_fonts   = 1
+
+" My Bundles here:
+NeoBundle 'L9'
+NeoBundle 'FuzzyFinder'
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'vim-scripts/tComment'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-fugitive'
+" NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-scripts/gtags.vim'
+NeoBundle 'vim-scripts/taglist.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'flazz/vim-colorschemes'
+
+call neobundle#end()
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype plugin indent on
+syntax on
 " Sets how many lines of history VIM has to remember
 set history=700
-
-" Enable filetype plugins
-filetype plugin on
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -112,10 +156,12 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
+let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/neosnippets'
+
 "color
 set t_Co=256
 hi Normal ctermbg=White ctermfg=Black
-:colorscheme jelleybeans
+:colorscheme wombat256mod
 "set background=dark
 
 "Show tab characters.Visual Whitespace.
@@ -123,6 +169,9 @@ set list listchars=tab:>_,trail:~,extends:>,precedes:<
 
 "easymotion
 let g:EasyMotion_leader_key = ';'
+
+"quickly add empty new line
+nmap <CR> o<ESC>
 
 "matchit
 "source $VIMRUNTIME/macros/matchit.vim
@@ -144,19 +193,6 @@ autocmd FileType fuf nmap <C-c> <ESC>
 map <C-j> :vsp <CR>:GtagsCursor<CR>
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
-
-"" unite.vim
-" prefix
-nnoremap [unite] <Nop>
-nmap <Leader>f [unite]
-"settings
-let g:unite_enable_start_insert=1
-let g:unite_source_history_yank_enable=1
-let g:unite_source_file_rec_max_cache_files=500
-"key mapping
-nnoremap <silent> [unite]f :<C-u>Unite -no-split file_mru buffer file_rec/async<CR>
-nnoremap <silent> [unite]y :<C-u>Unite -no-split history/yank<CR>
-nnoremap <silent> [unite]r :<C-u>Unite -no-split -buffer-name=register register<CR>
 
 " matchit
 runtime macros/matchit.vim
@@ -180,48 +216,7 @@ nmap <Leader>n :NERDTreeToggle<CR>
 let g:NERDTreeDirArrows=0
 let g:NERDTreeWinSize=50
 
-"" Neobundle
-if has('vim_starting')
-  set nocompatible
-
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" My Bundles here:
-NeoBundle 'gmarik/vundle'
-NeoBundle 'L9'
-NeoBundle 'FuzzyFinder'
-NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'vim-scripts/tComment'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'vim-scripts/gtags.vim'
-NeoBundle 'vim-scripts/taglist.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim'
-
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-
+"vimproc
 let vimproc_updcmd = has('win64') ?
       \ 'tools\\update-dll-mingw 64' : 'tools\\update-dll-mingw 32'
 execute "NeoBundle 'Shougo/vimproc.vim'," . string({
@@ -232,3 +227,31 @@ execute "NeoBundle 'Shougo/vimproc.vim'," . string({
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ })
+
+"" unite.vim
+" prefix
+nnoremap [unite] <Nop>
+nmap <Leader>f [unite]
+"settings
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable=1
+let g:unite_source_file_rec_max_cache_files=5000
+let g:unite_split_rule = "botright"
+let g:unite_force_overwrite_statusline = 0
+
+
+"key mapping
+nnoremap <silent> [unite]f :<C-u>Unite -no-split file_rec/async:!<CR>
+nnoremap <silent> [unite]m :<C-u>Unite -no-split file_mru buffer<CR>
+nnoremap <silent> [unite]y :<C-u>Unite -no-split history/yank<CR>
+nnoremap <silent> [unite]r :<C-u>Unite -no-split -buffer-name=register register<CR>
+
+autocmd FileType unite call s:unite_settings()
+
+function! s:unite_settings()
+  let b:SuperTabDisabled=1
+  imap <silent><buffer><expr> <C-j> unite#do_action('split')
+  imap <silent><buffer><expr> <C-k> unite#do_action('vsplit')
+endfunction
