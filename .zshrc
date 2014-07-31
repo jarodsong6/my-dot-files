@@ -54,12 +54,16 @@ export PATH
 export NODE_PATH=/usr/lib/nodejs
 export LANG=ja_JP.UTF-8
 export LC_ALL=ja_JP.UTF-8
-
-# export TERM=xterm-256color
+export EDITOR='vim'
 
 source $HOME/.zsh/z.sh
 
 alias tmux="TERM=screen-256color-bce tmux"
+
+# fix zsh tab completion of git commands slow issue
+__git_files () {
+    _wanted files expl 'local files' _files
+}
 
 # vim <-> shell
 setopt hist_ignore_space
@@ -67,3 +71,6 @@ bindkey -s '^z' '^[q %vi^m'
 
 # pythonbrew
 [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
+
+export NVM_DIR="/home/jarod-song/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
