@@ -14,10 +14,8 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " air-line status
-let g:airline_theme             = 'powerlineish'
-let g:airline_enable_branch     = 1
-let g:airline_enable_syntastic  = 1
-let g:airline_powerline_fonts   = 1
+let g:airline_theme = 'base16'
+let g:airline_section_b = ''
 
 " My Bundles here:
 NeoBundle 'L9'
@@ -124,7 +122,7 @@ set laststatus=2
 :set softtabstop=4
 " indent
 :set shiftwidth=4
-:set autoindent  
+:set autoindent
 
 " auto completiong
 let g:neocomplcache_enable_at_startup = 1
@@ -160,9 +158,8 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/neosnippe
 
 "color
 set t_Co=256
-hi Normal ctermbg=White ctermfg=Black
-:colorscheme wombat256mod
-"set background=dark
+:colorscheme solarized
+set background=dark
 
 "Show tab characters.Visual Whitespace.
 set list listchars=tab:>_,trail:~,extends:>,precedes:<
