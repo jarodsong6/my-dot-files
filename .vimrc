@@ -15,6 +15,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " air-line status
 let g:airline_theme = 'base16'
+let g:airline_powerline_fonts = 1
 let g:airline_section_b = ''
 
 " My Bundles here:
@@ -28,7 +29,6 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive'
-" NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'vim-scripts/gtags.vim'
 NeoBundle 'vim-scripts/taglist.vim'
@@ -77,7 +77,7 @@ nmap <leader>l :!php -l %<CR>
 "set break point
 nmap <leader>b :Bp<CR>
 "fast taglist toggle
-nmap <leader>f :TlistToggle<CR>
+nmap <leader>m :TlistToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -112,6 +112,9 @@ set showmatch
 set mat=2
 
 set number
+
+" CTRL-A increase as decimal
+set nrformats=
 
 " Show a status bar
 set laststatus=2
@@ -166,6 +169,8 @@ set list listchars=tab:>_,trail:~,extends:>,precedes:<
 
 "easymotion
 let g:EasyMotion_leader_key = ';'
+hi EasyMotionTarget2First ctermbg=none ctermfg=red
+hi EasyMotionTarget2Second ctermbg=none ctermfg=red
 
 "quickly add empty new line
 nmap <CR> o<ESC>
