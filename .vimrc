@@ -35,6 +35,7 @@ NeoBundle 'vim-scripts/taglist.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'brookhong/DBGPavim'
 
 call neobundle#end()
 
@@ -56,6 +57,9 @@ set autoread
 " change directory of the .swp file
 set swapfile
 set dir=~/tmp
+
+" debugger
+let g:dbgPavimBreakAtEntry = 1
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
