@@ -36,6 +36,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'brookhong/DBGPavim'
+NeoBundle 'rking/ag.vim'
 
 call neobundle#end()
 
@@ -60,6 +61,7 @@ set dir=~/tmp
 
 " debugger
 let g:dbgPavimBreakAtEntry = 1
+let g:dbgPavimOnce = 1
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -102,7 +104,7 @@ set whichwrap+=<,>,h,l
 
 " set encoding=utf-8
 set encoding=utf-8
-set fileencodings=euc-jp,utf-8,iso-2022-jp,sjis
+set fileencodings=utf-8,euc-jp,iso-2022-jp,sjis
 
 " search
 set hlsearch

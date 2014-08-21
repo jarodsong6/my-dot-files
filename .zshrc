@@ -44,21 +44,13 @@ bindkey "^[OC" forward-word
 bindkey "^[OD" backward-word
 
 vi_cv_path_python_plibs="-L/usr/lib/python2.5/config/"
-# export PATH='/usr/local/global/bin:/home/jarod-song/local/exuberant_ctags/bin:/home/jarod-song/local/vimmb/bin:PROTON_DIR/src/server/node_modules/.bin:'$PATH
-PROTON_HOME=${HOME}/proton
-PATH='/usr/local/global/bin:/home/jarod-song/local/exuberant_ctags/bin:/home/jarod-song/local/vimmb/bin:'$PATH
-PATH=${PATH}:${PROTON_HOME}/src/server/node_modules/coffee-script/bin
-PATH=${PATH}:${PROTON_HOME}/src/server/node_modules/.bin
-PATH=${PATH}:${HOME}/.nvm/v0.8.11/bin:~/bin
+PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH
-export NODE_PATH=/usr/lib/nodejs
-export LANG=ja_JP.UTF-8
-export LC_ALL=ja_JP.UTF-8
 export EDITOR='vim'
 
-source $HOME/.zsh/z.sh
+# source $HOME/.zsh/z.sh
 
-alias tmux="TERM=screen-256color-bce tmux"
+alias tmux="TERM=screen-256color-bce tmux -u"
 
 # fix zsh tab completion of git commands slow issue
 __git_files () {
@@ -68,9 +60,3 @@ __git_files () {
 # vim <-> shell
 setopt hist_ignore_space
 bindkey -s '^z' '^[q %vi^m'
-
-# pythonbrew
-[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
-
-export NVM_DIR="/home/jarod-song/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
