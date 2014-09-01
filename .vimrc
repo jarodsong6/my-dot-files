@@ -31,12 +31,20 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'vim-scripts/gtags.vim'
-NeoBundle 'vim-scripts/taglist.vim'
+NeoBundle 'majutsushi/tagbar'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'brookhong/DBGPavim'
 NeoBundle 'rking/ag.vim'
+NeoBundle 'Shougo/vimproc.vim', {
+      \ 'build' : {
+      \     'windows' : 'tools\\update-dll-mingw',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
 
 call neobundle#end()
 
@@ -62,6 +70,7 @@ set dir=~/tmp
 " debugger
 let g:dbgPavimBreakAtEntry = 1
 let g:dbgPavimOnce = 1
+let g:dbgPavimPathMap = [['/var/www/html/batches','/media/sf_batches']]
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -83,7 +92,7 @@ nmap <leader>l :!php -l %<CR>
 "set break point
 nmap <leader>b :Bp<CR>
 "fast taglist toggle
-nmap <leader>m :TlistToggle<CR>
+nmap <leader>m :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -224,18 +233,6 @@ nmap <Leader>n :NERDTreeToggle<CR>
 let g:NERDTreeDirArrows=0
 let g:NERDTreeWinSize=50
 
-"vimproc
-let vimproc_updcmd = has('win64') ?
-      \ 'tools\\update-dll-mingw 64' : 'tools\\update-dll-mingw 32'
-execute "NeoBundle 'Shougo/vimproc.vim'," . string({
-      \ 'build' : {
-      \     'windows' : vimproc_updcmd,
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ })
-
 "" unite.vim
 " prefix
 nnoremap [unite] <Nop>
@@ -247,14 +244,21 @@ let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable=1
 let g:unite_source_file_rec_max_cache_files=5000
 let g:unite_split_rule = "botright"
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
 let g:unite_force_overwrite_statusline = 0
-
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '--nocolor --nogroup --column'
+let g:unite_source_grep_recursive_opt = ''
 
 "key mapping
-nnoremap <silent> [unite]f :<C-u>Unite -no-split file_rec/async:!<CR>
+nnoremap <silent> [unite]f :<C-u>Unite -no-split file_rec<CR>
 nnoremap <silent> [unite]m :<C-u>Unite -no-split file_mru buffer<CR>
 nnoremap <silent> [unite]y :<C-u>Unite -no-split history/yank<CR>
 nnoremap <silent> [unite]r :<C-u>Unite -no-split -buffer-name=register register<CR>
+nnoremap <silent> [unite]g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> [unite]c :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+nnoremap <silent> [unite]a  :<C-u>UniteResume search-buffer<CR>
 
 autocmd FileType unite call s:unite_settings()
 
