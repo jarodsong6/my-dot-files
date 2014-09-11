@@ -37,6 +37,7 @@ NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'brookhong/DBGPavim'
 NeoBundle 'rking/ag.vim'
+NeoBundle 'vim-scripts/csv.vim'
 NeoBundle 'Shougo/vimproc.vim', {
       \ 'build' : {
       \     'windows' : 'tools\\update-dll-mingw',
@@ -93,6 +94,8 @@ nmap <leader>l :!php -l %<CR>
 nmap <leader>b :Bp<CR>
 "fast taglist toggle
 nmap <leader>m :TagbarToggle<CR>
+"csv.vim - Highlight the column on which the cursor is using
+nmap <leader>h :HiColumn<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
