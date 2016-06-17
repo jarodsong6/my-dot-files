@@ -13,6 +13,11 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+" air-line status
+let g:airline_theme = 'base16'
+let g:airline_powerline_fonts = 1
+let g:airline_section_b = ''
+
 " My Bundles here:
 NeoBundle 'L9'
 NeoBundle 'FuzzyFinder'
@@ -24,19 +29,15 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'bling/vim-airline'
 NeoBundle 'vim-scripts/gtags.vim'
 NeoBundle 'majutsushi/tagbar'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'brookhong/DBGPavim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'vim-scripts/csv.vim'
-NeoBundle 'elzr/vim-json'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'Shougo/vimproc.vim', {
       \ 'build' : {
       \     'windows' : 'tools\\update-dll-mingw',
@@ -70,6 +71,7 @@ set dir=~/tmp
 " debugger
 let g:dbgPavimBreakAtEntry = 1
 let g:dbgPavimOnce = 1
+let g:dbgPavimPathMap = [['/var/www/html/batches','/media/sf_batches']]
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -87,9 +89,7 @@ nmap <leader>gs :!git status<cr>
 nmap <leader>gd :!git diff<cr>
 vmap <Leader>gb :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 "php lint
-" nmap <leader>l :!php -l %<CR>
-"ruby lint
-nmap <leader>l :w !ruby -c %<CR>
+nmap <leader>l :!php -l %<CR>
 "set break point
 nmap <leader>b :Bp<CR>
 "fast taglist toggle
@@ -137,15 +137,12 @@ set nrformats=
 " Show a status bar
 set laststatus=2
 
-" Disable mouse click to go to position
-set mouse-=a
-
 " tab
 :set expandtab
-:set tabstop=2
-:set softtabstop=2
+:set tabstop=4
+:set softtabstop=4
 " indent
-:set shiftwidth=2
+:set shiftwidth=4
 :set autoindent
 
 " auto completiong
@@ -164,13 +161,6 @@ let g:neocomplcache_enable_underbar_completion = 0
 let g:neocomplcache_plugin_disable = {
   \ 'syntax_complete' : 1, 
   \ }
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -246,5 +236,37 @@ nmap <Leader>n :NERDTreeToggle<CR>
 let g:NERDTreeDirArrows=0
 let g:NERDTreeWinSize=50
 
-" vim json
-let g:vim_json_syntax_conceal = 0
+"" unite.vim
+" prefix
+nnoremap [unite] <Nop>
+nmap <Leader>f [unite]
+"settings
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable=1
+let g:unite_source_file_rec_max_cache_files=5000
+let g:unite_split_rule = "botright"
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+let g:unite_force_overwrite_statusline = 0
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '--nocolor --nogroup --column'
+let g:unite_source_grep_recursive_opt = ''
+
+"key mapping
+nnoremap <silent> [unite]f :<C-u>Unite -no-split file_rec<CR>
+nnoremap <silent> [unite]m :<C-u>Unite -no-split file_mru buffer<CR>
+nnoremap <silent> [unite]y :<C-u>Unite -no-split history/yank<CR>
+nnoremap <silent> [unite]r :<C-u>Unite -no-split -buffer-name=register register<CR>
+nnoremap <silent> [unite]g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> [unite]c :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+nnoremap <silent> [unite]a  :<C-u>UniteResume search-buffer<CR>
+
+autocmd FileType unite call s:unite_settings()
+
+function! s:unite_settings()
+  let b:SuperTabDisabled=1
+  imap <silent><buffer><expr> <C-j> unite#do_action('split')
+  imap <silent><buffer><expr> <C-k> unite#do_action('vsplit')
+endfunction
