@@ -1,66 +1,58 @@
-"" Neobundle
-if has('vim_starting')
-  set nocompatible
-
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
 " air-line status
 let g:airline_theme = 'base16'
 let g:airline_powerline_fonts = 1
 let g:airline_section_b = ''
 
-" My Bundles here:
-NeoBundle 'L9'
-NeoBundle 'FuzzyFinder'
-NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'vim-scripts/tComment'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'vim-scripts/gtags.vim'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'brookhong/DBGPavim'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'vim-scripts/csv.vim'
-NeoBundle 'elzr/vim-json'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'Shougo/vimproc.vim', {
-      \ 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
 
-call neobundle#end()
+call plug#begin('~/.vim/plugged')
+Plug 'Lokaltog/vim-easymotion'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-scripts/tComment'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/gtags.vim'
+Plug 'majutsushi/tagbar'
+Plug 'flazz/vim-colorschemes'
+Plug 'brookhong/DBGPavim'
+Plug 'rking/ag.vim'
+Plug 'vim-scripts/csv.vim'
+Plug 'elzr/vim-json'
+Plug 'vim-ruby/vim-ruby'
+Plug 'osyo-manga/vim-monster'
+Plug 'tpope/vim-rails'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-endwise'
+Plug 'scrooloose/syntastic'
+Plug 'kchmck/vim-coffee-script'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'mattn/emmet-vim'
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'Chiel92/vim-autoformat'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+" {{{
+  let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+  let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
+  nnoremap <silent> <leader>o :Files<CR>
+  nnoremap <silent> <leader>r :History<CR>
+  nnoremap <silent> <leader>. :Lines<CR>
+  nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
+" }}}
+
+call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -81,11 +73,6 @@ set dir=~/tmp
 let g:dbgPavimBreakAtEntry = 1
 let g:dbgPavimOnce = 1
 
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
-
 " ~/.vimrc
 nmap <leader>w :w!<cr>
 " Fast save and quit
@@ -96,6 +83,11 @@ nmap <leader>q :qa!<cr>
 nmap <leader>gs :!git status<cr>
 nmap <leader>gd :!git diff<cr>
 vmap <Leader>gb :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+"vsplit
+nmap <leader>v :vsplit
+"split
+nmap <leader>s :split
+
 "php lint
 " nmap <leader>l :!php -l %<CR>
 "ruby lint
@@ -158,45 +150,6 @@ set mouse-=a
 :set shiftwidth=2
 :set autoindent
 
-" auto completiong
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_max_list = 20
-let g:neocomplcache_auto_completion_start_length = 2
-let g:neocomplcache_manual_completion_start_length = 3
-let g:neocomplcache_min_keyword_length = 4
-let g:neocomplcache_min_syntax_length = 4
-let g:neocomplcache_enable_ignore_case = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_quick_match = 0
-let g:neocomplcache_enable_camel_case_completion = 0
-let g:neocomplcache_enable_underbar_completion = 0
-
-let g:neocomplcache_plugin_disable = {
-  \ 'syntax_complete' : 1, 
-  \ }
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/neosnippets'
-
 "color
 set t_Co=256
 :colorscheme solarized
@@ -204,6 +157,9 @@ set background=dark
 
 "Show tab characters.Visual Whitespace.
 set list listchars=tab:>_,trail:~,extends:>,precedes:<
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
 
 "easymotion
 let g:EasyMotion_leader_key = ';'
@@ -213,21 +169,8 @@ hi EasyMotionTarget2Second ctermbg=none ctermfg=red
 "quickly add empty new line
 nmap <CR> o<ESC>
 
-"matchit
-"source $VIMRUNTIME/macros/matchit.vim
-":let b:match_words = '<:>,<div.*>:</div>'
-":let b:match_words .= ',{\s*if\>:{\s*elseif\>:{\s*else\>:{\s*/if\>,{\s*foreach\>:{\s*foreachelse\>:{\s*/foreach\>'
-
-"fuzzyfinder
-let g:fuf_modesDisable = ['mrucmd']
-let g:fuf_file_exclude = '\v\~$|\.(o|exe|bak|swp|gif|jpg|png)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-let g:fuf_mrufile_exclude = '\v\~$|\.bak$|\.swp|\.howm$|\.(gif|jpg|png)$'
-let g:fuf_mrufile_maxItem = 10000
-let g:fuf_enumeratingLimit = 20
-nnoremap <silent> efb :FufBuffer!<CR>
-nnoremap <silent> eff :FufFile!<CR>
-nnoremap <silent> efm :FufMruFile!<CR>
-autocmd FileType fuf nmap <C-c> <ESC>
+"autoformat
+noremap <F3> :Autoformat<CR>
 
 "Gtags
 map <C-j> :vsp <CR>:GtagsCursor<CR>
@@ -256,43 +199,8 @@ nmap <Leader>n :NERDTreeToggle<CR>
 let g:NERDTreeDirArrows=0
 let g:NERDTreeWinSize=50
 
-"" unite.vim
-" prefix
-nnoremap [unite] <Nop>
-nmap <Leader>f [unite]
-"settings
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-let g:unite_enable_start_insert=1
-let g:unite_source_history_yank_enable=1
-let g:unite_source_file_rec_max_cache_files=5000
-let g:unite_split_rule = "botright"
-let g:unite_enable_ignore_case = 1
-let g:unite_enable_smart_case = 1
-let g:unite_force_overwrite_statusline = 0
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '--nocolor --nogroup --column'
-let g:unite_source_grep_recursive_opt = ''
-
 " vim json
 let g:vim_json_syntax_conceal = 0
-
-"key mapping
-nnoremap <silent> [unite]f :<C-u>Unite -no-split file_rec<CR>
-nnoremap <silent> [unite]m :<C-u>Unite -no-split file_mru buffer<CR>
-nnoremap <silent> [unite]y :<C-u>Unite -no-split history/yank<CR>
-nnoremap <silent> [unite]r :<C-u>Unite -no-split -buffer-name=register register<CR>
-nnoremap <silent> [unite]g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
-nnoremap <silent> [unite]c :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
-nnoremap <silent> [unite]a  :<C-u>UniteResume search-buffer<CR>
-
-autocmd FileType unite call s:unite_settings()
-
-function! s:unite_settings()
-  let b:SuperTabDisabled=1
-  imap <silent><buffer><expr> <C-j> unite#do_action('split')
-  imap <silent><buffer><expr> <C-k> unite#do_action('vsplit')
-endfunction
 
 " syntastic
 set statusline+=%#warningmsg#
@@ -305,3 +213,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'mode': 'passive' }
 let g:syntastic_ruby_checkers = ['rubocop']
+
+" hight long lines
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
