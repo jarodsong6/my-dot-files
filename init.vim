@@ -12,31 +12,28 @@ call plug#begin('~/.vim/plugged')
 Plug 'Lokaltog/vim-easymotion'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/tComment'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-scripts/gtags.vim'
 Plug 'majutsushi/tagbar'
 Plug 'flazz/vim-colorschemes'
-Plug 'brookhong/DBGPavim'
+" Plug 'brookhong/DBGPavim'
+Plug 'joonty/vdebug'
 Plug 'rking/ag.vim'
 Plug 'vim-scripts/csv.vim'
 Plug 'elzr/vim-json'
 Plug 'vim-ruby/vim-ruby'
-Plug 'osyo-manga/vim-monster'
-Plug 'tpope/vim-rails'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-endwise'
 Plug 'scrooloose/syntastic'
-Plug 'kchmck/vim-coffee-script'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'mattn/emmet-vim'
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-Plug 'Chiel92/vim-autoformat'
+" function! DoRemote(arg)
+"   UpdateRemotePlugins
+" endfunction
+" Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'ervandew/supertab'
 Plug 'ngmy/vim-rubocop'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -70,9 +67,16 @@ set autoread
 set swapfile
 set dir=~/tmp
 
+" " debugger
+" let g:dbgPavimBreakAtEntry = 1
+" let g:dbgPavimOnce = 1
 " debugger
-let g:dbgPavimBreakAtEntry = 1
-let g:dbgPavimOnce = 1
+let g:vdebug_options = {}
+let g:vdebug_options["port"] = 9000
+let g:vdebug_options["path_maps"] = {
+\    "xxx": "xxx",
+\    "xxx": "xxx"
+\}
 
 " ~/.vimrc
 nmap <leader>w :w!<cr>
@@ -84,10 +88,14 @@ nmap <leader>q :qa!<cr>
 nmap <leader>gs :!git status<cr>
 nmap <leader>gd :!git diff<cr>
 vmap <Leader>gb :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+"edit
+nmap <leader>e :e 
 "vsplit
-nmap <leader>v :vsplit
+nmap <leader>v :vsplit 
 "split
-nmap <leader>s :split
+nmap <leader>s :split 
+"Ag
+nmap <leader>a :Ag 
 
 "php lint
 " nmap <leader>l :!php -l %<CR>
@@ -159,8 +167,8 @@ set background=dark
 "Show tab characters.Visual Whitespace.
 set list listchars=tab:>_,trail:~,extends:>,precedes:<
 
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
+" " Use deoplete.
+" let g:deoplete#enable_at_startup = 1
 
 "easymotion
 let g:EasyMotion_leader_key = ';'
@@ -170,16 +178,13 @@ hi EasyMotionTarget2Second ctermbg=none ctermfg=red
 "quickly add empty new line
 nmap <CR> o<ESC>
 
-"autoformat
-noremap <F3> :Autoformat<CR>
-
 "Gtags
 map <C-j> :vsp <CR>:GtagsCursor<CR>
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
-" matchit
-runtime macros/matchit.vim
+" " matchit
+" runtime macros/matchit.vim
 
 " toggle window size
 nnoremap <Leader>t :call ToggleWindowSize()<cr>
@@ -215,6 +220,20 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'mode': 'passive' }
 let g:syntastic_ruby_checkers = ['rubocop']
 
+" rubocop
+nmap <Leader>c :RuboCop<CR>
+
 " hight long lines
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
+
+"YCM
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
