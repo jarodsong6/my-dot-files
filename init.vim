@@ -11,17 +11,13 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'flazz/vim-colorschemes'
-Plug 'joonty/vdebug'
-Plug 'rking/ag.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'vim-scripts/csv.vim'
 Plug 'elzr/vim-json'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-endwise'
 Plug 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ervandew/supertab'
 Plug 'ngmy/vim-rubocop'
 Plug 'leafgarland/typescript-vim'
@@ -31,6 +27,9 @@ Plug 'raimondi/delimitmate'
 Plug 'mattn/emmet-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'sgur/vim-editorconfig'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -70,8 +69,6 @@ nmap <leader>e :e
 nmap <leader>v :vsplit 
 "split
 nmap <leader>s :split 
-"Ag
-nmap <leader>a :Ag 
 
 "php lint
 " nmap <leader>l :!php -l %<CR>
@@ -81,8 +78,6 @@ nmap <leader>l :w !ruby -c %<CR>
 nmap <leader>b :Bp<CR>
 "fast taglist toggle
 nmap <leader>m :TagbarToggle<CR>
-"csv.vim - Highlight the column on which the cursor is using
-nmap <leader>h :HiColumn<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -123,7 +118,7 @@ set mouse-=a
 
 " color {
 set t_Co=256
-:colorscheme solarized
+:colorscheme dracula
 set background=dark
 "}
 
@@ -149,20 +144,6 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" deoplete.nvim {
-let g:deoplete#enable_at_startup=1
-let g:deoplete#enable_refresh_always=0
-let g:deoplete#file#enable_buffer_path=1
-
-let g:deoplete#sources={}
-let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
-let g:deoplete#sources.ruby = ['buffer', 'member', 'file', 'ultisnips']
-let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
-let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-"}
-
 " lightline {
 let g:lightline = {
       \ 'active': {
@@ -184,25 +165,27 @@ let g:fzf_action = {
 \ 'ctrl-s': 'split',
 \ 'ctrl-v': 'vsplit' }
 
-nnoremap <silent> <leader>o :Files<CR>
-nnoremap <silent> <leader>r :History<CR>
-nnoremap <silent> <leader>. :Lines<CR>
-nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
-"}
+" ripgrep with fzf:
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 
-" vdebug {
-let g:vdebug_options = {}
-let g:vdebug_options["port"] = 9000
-let g:vdebug_options["path_maps"] = {
-\    "/usr/local/apache/vhosts": "xxx",
-\    "xxx": "xxx"
-\}
+nnoremap <silent> <leader>o :Files<CR>
+nnoremap <silent> <leader>h :History<CR>
+nnoremap <silent> <leader>. :Lines<CR>
+nmap <leader>a :Rg 
 "}
 
 " NERDTree {
-nmap <Leader>n :NERDTreeToggle<CR>
+nmap <Leader>f :NERDTreeToggle<CR>
 let g:NERDTreeDirArrows=0
 let g:NERDTreeWinSize=50
+let NERDTreeShowHidden=1
+let g:NERDTreeLimitedSyntax = 1
+let g:NERDTreeHighlightCursorline = 0
 "}
 
 " vim json {
@@ -223,7 +206,7 @@ let g:syntastic_ruby_checkers = ['rubocop']
 "}
 
 " rubocop {
-nmap <Leader>c :RuboCop<CR>
+" nmap <Leader>c :RuboCop<CR>
 "}
 
 " supertab {
