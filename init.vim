@@ -30,6 +30,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'sgur/vim-editorconfig'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'google/vim-searchindex'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -106,19 +107,19 @@ set nrformats=
 set mouse-=a
 
 " tab {
-:set expandtab
-:set tabstop=4
-:set softtabstop=4
+set expandtab
+set tabstop=4
+set softtabstop=4
 "}
 
 " indent {
-:set shiftwidth=4
-:set autoindent
+set shiftwidth=4
+set autoindent
 "}
 
 " color {
 set t_Co=256
-:colorscheme dracula
+:colorscheme solarized
 set background=dark
 "}
 
