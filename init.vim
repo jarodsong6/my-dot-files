@@ -13,14 +13,10 @@ Plug 'majutsushi/tagbar'
 Plug 'flazz/vim-colorschemes'
 Plug 'itchyny/lightline.vim'
 Plug 'elzr/vim-json'
-Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-endwise'
 Plug 'scrooloose/syntastic'
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
-Plug 'ngmy/vim-rubocop'
-Plug 'leafgarland/typescript-vim'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-commentary'
 Plug 'raimondi/delimitmate'
@@ -30,14 +26,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'sgur/vim-editorconfig'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'google/vim-searchindex'
-Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-tmux'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-jedi'
-Plug 'ncm2/ncm2-cssomni'
-Plug 'roxma/nvim-yarp'
+Plug 'romainl/vim-cool'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -80,8 +70,6 @@ nmap <leader>s :split
 
 "php lint
 " nmap <leader>l :!php -l %<CR>
-"ruby lint
-nmap <leader>l :w !ruby -c %<CR>
 "set break point
 nmap <leader>b :Bp<CR>
 "fast taglist toggle
@@ -210,26 +198,12 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'mode': 'passive' }
-let g:syntastic_ruby_checkers = ['rubocop']
-"}
-
-" rubocop {
-" nmap <Leader>c :RuboCop<CR>
 "}
 
 " supertab {
 let g:SuperTabDefaultCompletionType = '<C-n>'
 "}
 
-" ultisnips {
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-"}
-
-" ncm2 {
-" enable ncm2 for all buffer
-autocmd BufEnter * call ncm2#enable_for_buffer()
-" note that must keep noinsert in completeopt, the others is optional
-set completeopt=noinsert,menuone,noselect
+" vim-cool {
+let g:CoolTotalMatches = 1
 "}
