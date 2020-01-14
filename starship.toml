@@ -1,0 +1,11 @@
+[python]
+pyenv_version_name = true
+disabled = true
+
+[cmd_duration]
+min_time = 1
+
+[time]
+disabled = false
+format = "[ %T ]"
+utc_time_offset = +9
