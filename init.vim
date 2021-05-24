@@ -7,13 +7,11 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'rakr/vim-one'
 Plug 'easymotion/vim-easymotion'
 Plug 'preservim/tagbar'
 Plug 'itchyny/lightline.vim'
 Plug 'elzr/vim-json'
-Plug 'honza/vim-snippets'
-Plug 'ervandew/supertab'
-Plug 'godlygeek/tabular'
 Plug 'tpope/vim-commentary'
 Plug 'mattn/emmet-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -21,14 +19,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-slash'
 Plug 'ryanoasis/vim-devicons'
+Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'leafgarland/typescript-vim'
-Plug 'rakr/vim-one'
 Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
 Plug 'RRethy/vim-illuminate'
 Plug 'pechorin/any-jump.vim'
 Plug 'mhinz/vim-signify'
-Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
@@ -166,7 +163,7 @@ let g:fzf_action = {
 " ripgrep with fzf:
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   'rg --column --line-number --hidden --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
@@ -177,21 +174,8 @@ nnoremap <silent> <leader>. :Lines<CR>
 nnoremap <leader>a :Rg 
 "}
 
-"" NERDTree {
-"let g:NERDTreeDirArrows=0
-"let g:NERDTreeWinSize=50
-"let NERDTreeShowHidden=1
-"let g:NERDTreeLimitedSyntax = 1
-"let g:NERDTreeHighlightCursorline = 0
-""}
-
 " vim json {
 let g:vim_json_syntax_conceal = 0
-"}
-
-
-" supertab {
-let g:SuperTabDefaultCompletionType = '<C-n>'
 "}
 
 " coc.nvim {
@@ -212,12 +196,20 @@ set updatetime=300
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
 " GoTo code navigation.
 autocmd VimEnter * nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
 
 " Use <c-k> to trigger completion.
 inoremap <silent><expr> <c-k> coc#refresh()
@@ -272,13 +264,12 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_prev = '<S-tab>'
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-let g:coc_snippet_next = '<tab>'
 
 " Extensions
 let g:coc_global_extensions = [
@@ -291,7 +282,6 @@ let g:coc_global_extensions = [
     \ 'coc-tsserver',
     \ 'coc-go',
     \ 'coc-pairs',
-    \ 'coc-flutter',
     \ 'coc-vimlsp'
   \ ]
 "}
