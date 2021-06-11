@@ -135,11 +135,6 @@ let g:lightline = {
       \ }
 "}
 
-" any-jump {
-let g:any_jump_window_width_ratio  = 0.8
-let g:any_jump_window_height_ratio = 0.9
-"}
-
 " highlight {
 let g:Illuminate_delay = 750
 hi illuminatedWord cterm=undercurl gui=undercurl
@@ -300,6 +295,9 @@ nnoremap <leader>j :AnyJump<CR>
 
 " Visual mode: jump to selected text in visual mode
 xnoremap <leader>j :AnyJumpVisual<CR>
+
+let g:any_jump_window_width_ratio  = 0.8
+let g:any_jump_window_height_ratio = 0.9
 "}
 
 " vim-go

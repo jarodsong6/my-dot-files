@@ -7,5 +7,4 @@ min_time = 1
 
 [time]
 disabled = false
-format = "[ %T ]"
 utc_time_offset = +9

@@ -1,0 +1,15 @@
+{
+    "python.pythonPath": "/Users/lin.song/.pyenv/shims/python",
+    "coc.preferences.extensionUpdateCheck": "daily",
+    "suggest.noselect": true,
+    "suggest.enablePreselect": false,
+    "explorer.file.column.indent.indentLine": true,
+    "explorer.file.showHiddenFiles": true,
+    "explorer.icon.enableNerdfont": true,
+    "explorer.git.showIgnored": true,
+    "explorer.buffer.showHiddenBuffers": true,
+    "snippets.ultisnips.directories": [
+        "UltiSnips",
+        "$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
+    ]
+}
