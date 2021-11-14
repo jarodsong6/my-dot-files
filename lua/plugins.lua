@@ -153,9 +153,23 @@ return require('packer').startup(function(use)
   use {'hrsh7th/cmp-buffer'}
   use {'hrsh7th/cmp-path'}
   use {'hrsh7th/cmp-cmdline'}
-  use {'hrsh7th/cmp-vsnip'}
-  use {'hrsh7th/vim-vsnip'}
+  use {'saadparwaiz1/cmp_luasnip'} -- Snippets source for nvim-cmp
+  use {'L3MON4D3/LuaSnip'}         -- Snippets plugin
   use {'onsails/lspkind-nvim'}
+
+  -- -- coq_nvim
+  -- use {
+    -- 'ms-jpq/coq_nvim',
+    -- branch = 'coq',
+  -- }
+  -- use {
+    -- 'ms-jpq/coq.artifacts',
+    -- branch = 'artifacts',
+  -- }
+  -- use {
+    -- 'ms-jpq/coq.thirdparty',
+    -- branch = '3p',
+  -- }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
