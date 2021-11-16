@@ -20,8 +20,10 @@ vim.api.nvim_set_keymap("n", "<Leader>h", "<CMD>Telescope oldfiles<CR>", opts_ns
 vim.api.nvim_set_keymap("n", "<Leader>a", ":Rg ", opts_n)
 
 -- hop.nvim
-vim.api.nvim_set_keymap("n", "<Leader>;", ":HopWord<CR>", opts_ns)
-vim.api.nvim_set_keymap("v", "<Leader>;", "<CMD>HopWord<CR>", opts_ns)
+vim.api.nvim_set_keymap("n", ";w", ":HopWord<CR>", opts_ns)
+vim.api.nvim_set_keymap("v", ";w", "<CMD>HopWord<CR>", opts_ns)
+vim.api.nvim_set_keymap("n", ";j", ":HopLine<CR>", opts_ns)
+vim.api.nvim_set_keymap("v", ";j", "<CMD>HopLine<CR>", opts_ns)
 
 -- any-jump
 vim.api.nvim_set_keymap("n", "<Leader>j", ":AnyJump<CR>", opts_ns)
