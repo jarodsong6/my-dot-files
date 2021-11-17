@@ -11,6 +11,10 @@ return require('packer').startup(function(use)
   -- Themes
   use {'junegunn/seoul256.vim'}
 
+  -- nvim-autopairs
+  use {'windwp/nvim-autopairs'}
+  require('nvim-autopairs').setup{}
+
   -- fzf
   use {'junegunn/fzf', run = ":call fzf#install()" }
   use {'junegunn/fzf.vim'}
