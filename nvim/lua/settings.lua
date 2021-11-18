@@ -26,7 +26,7 @@ vim.o.list          = true
 vim.o.completeopt   = "menuone,noinsert,noselect"
 
 vim.opt.listchars = {
-  tab = '>_',
+  tab = '│ ',
   trail = '~',
   extends = '>',
   precedes = '<'
