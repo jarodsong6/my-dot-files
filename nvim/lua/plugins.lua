@@ -11,6 +11,9 @@ return require('packer').startup(function(use)
   -- Themes
   use {'junegunn/seoul256.vim'}
 
+  -- vim-fugitive
+  use {'tpope/vim-fugitive'}
+
   -- nvim-autopairs
   use {'windwp/nvim-autopairs'}
   require('nvim-autopairs').setup{}
