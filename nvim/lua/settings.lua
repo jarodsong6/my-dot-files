@@ -38,7 +38,7 @@ vim.cmd('filetype plugin indent on')                        --- Enables plugin &
 vim.cmd([[
 augroup MyColors
 autocmd!
-autocmd ColorScheme * highlight vertsplit guifg=bg guibg=bg
+autocmd VimEnter * highlight vertsplit guifg=bg guibg=bg
 augroup end
 ]])                                                         --- hide vertical bar
 
