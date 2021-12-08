@@ -11,6 +11,9 @@ vim.api.nvim_set_keymap('n', '<Leader>e', ':e ', opts_n)
 vim.api.nvim_set_keymap('n', '<Leader>v', ':vsplit ', opts_n)
 vim.api.nvim_set_keymap('n', '<Leader>s', ':split ', opts_n)
 
+-- Automatically clears search highlight when cursor is moved
+vim.api.nvim_set_keymap('n', '<CR>', ':noh<CR>', opts_ns)
+
 -- vim-fugitive
 vim.api.nvim_set_keymap('n', '<Leader>gb', ':Git blame<CR>', opts_ns)
 
