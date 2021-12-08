@@ -37,9 +37,9 @@ vim.cmd('colorscheme seoul256')
 vim.cmd('filetype plugin indent on')                        --- Enables plugin & indent
 vim.cmd([[
 augroup MyColors
-autocmd!
-autocmd VimEnter * highlight vertsplit guifg=bg guibg=bg
-augroup end
+  autocmd!
+  autocmd VimEnter * highlight vertsplit guifg=bg guibg=bg
+augroup END
 ]])                                                         --- hide vertical bar
 
 -- toggle window size

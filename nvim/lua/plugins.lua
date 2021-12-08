@@ -117,7 +117,12 @@ return require('packer').startup(function(use)
 
   -- vim-illuminate
   use {'RRethy/vim-illuminate'}
-  vim.cmd('hi illuminatedWord cterm=undercurl gui=undercurl')
+  vim.cmd([[
+  augroup illuminate_augroup
+    autocmd!
+    autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline
+  augroup END
+  ]])
 
   -- comment
   use({
