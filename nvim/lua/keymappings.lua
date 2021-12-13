@@ -10,6 +10,9 @@ vim.api.nvim_set_keymap('n', '<Leader>q', ':qa!<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>e', ':e ', opts_n)
 vim.api.nvim_set_keymap('n', '<Leader>v', ':vsplit ', opts_n)
 vim.api.nvim_set_keymap('n', '<Leader>s', ':split ', opts_n)
+vim.cmd [[autocmd BufReadPost quickfix nnoremap <buffer> j :cn<CR>]]
+vim.cmd [[autocmd BufReadPost quickfix nnoremap <buffer> k :cp<CR>]]
+
 
 -- Automatically clears search highlight when cursor is moved
 vim.api.nvim_set_keymap('n', '<CR>', ':noh<CR>', opts_ns)
@@ -30,10 +33,6 @@ vim.api.nvim_set_keymap("n", ";w", ":HopWord<CR>", opts_ns)
 vim.api.nvim_set_keymap("v", ";w", "<CMD>HopWord<CR>", opts_ns)
 vim.api.nvim_set_keymap("n", ";j", ":HopLine<CR>", opts_ns)
 vim.api.nvim_set_keymap("v", ";j", "<CMD>HopLine<CR>", opts_ns)
-
--- any-jump
-vim.api.nvim_set_keymap("n", "<Leader>j", ":AnyJump<CR>", opts_ns)
-vim.api.nvim_set_keymap("n", "<Leader>j", ":AnyJumpVisual<CR>", opts_ns)
 
 -- tagbar
 vim.api.nvim_set_keymap("n", "<Leader>m", ":TagbarToggle<CR>", opts_ns)
