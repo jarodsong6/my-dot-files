@@ -151,6 +151,15 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- lspsaga.nvim
+  use {'glepnir/lspsaga.nvim'}
+  require('lspsaga').init_lsp_saga {
+    code_action_icon = '',
+    finder_action_keys = {
+      open = 'o', vsplit = 'v',split = 'x',quit = 'q',scroll_down = '<C-f>', scroll_up = '<C-b>' -- quit can be a table
+    },
+  }
+
   -- LSP, Cmp
   use {'neovim/nvim-lspconfig'}
   use {'williamboman/nvim-lsp-installer'}
