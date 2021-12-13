@@ -160,6 +160,9 @@ return require('packer').startup(function(use)
     },
   }
 
+  -- nvim-jdtls
+  use {'mfussenegger/nvim-jdtls'}
+
   -- LSP, Cmp
   use {'neovim/nvim-lspconfig'}
   use {'williamboman/nvim-lsp-installer'}
