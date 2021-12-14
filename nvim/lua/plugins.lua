@@ -43,22 +43,15 @@ return require('packer').startup(function(use)
       {'nvim-lua/popup.nvim'},
       {'nvim-lua/plenary.nvim'},
       {'nvim-telescope/telescope-fzf-native.nvim'},
-      {'nvim-telescope/telescope-fzf-writer.nvim'}
-    },
-    config = function() require'telescope'.setup {
-      extensions = {
-        fzf_writer = {
-          minimum_grep_characters = 2,
-          minimum_files_characters = 2,
-          use_highlighter = true,
-        }
-      }
     }
-    end
   }
   require('telescope').load_extension('fzf')
-  require('telescope').load_extension('fzf_writer')
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  require('telescope').setup{
+    defaults = {
+      layout_config = { width = 0.96 },
+    }
+  }
 
   -- Nvim Tree
   use {
@@ -154,7 +147,11 @@ return require('packer').startup(function(use)
   -- lspsaga.nvim
   use {'glepnir/lspsaga.nvim'}
   require('lspsaga').init_lsp_saga {
-    code_action_icon = '',
+    code_action_prompt = {
+      enable = false,
+      sign = false,
+      virtual_text = false,
+    },
     finder_action_keys = {
       open = 'o', vsplit = 'v',split = 'x',quit = 'q',scroll_down = '<C-f>', scroll_up = '<C-b>' -- quit can be a table
     },

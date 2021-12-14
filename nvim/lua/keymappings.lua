@@ -24,6 +24,9 @@ vim.api.nvim_set_keymap('n', '<Leader>f', ':NvimTreeToggle<CR>', opts_ns)
 vim.api.nvim_set_keymap("n", "<Leader>o", "<CMD>Telescope find_files<CR>", opts_ns)
 vim.api.nvim_set_keymap("n", "<Leader>h", "<CMD>Telescope oldfiles<CR>", opts_ns)
 vim.api.nvim_set_keymap("n", "<Leader>a", ":Rg ", opts_n)
+vim.api.nvim_set_keymap('n', 'gr', '<CMD>Telescope lsp_references<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', 'ca', '<CMD>Telescope lsp_code_actions<CR>', opts_ns)
+vim.api.nvim_set_keymap('v', 'ca', '<CMD>Telescope lsp_range_code_actions<CR>', opts_ns)
 
 -- hop.nvim
 vim.api.nvim_set_keymap("n", ";w", ":HopWord<CR>", opts_ns)
@@ -46,7 +49,6 @@ vim.api.nvim_set_keymap('n', '<space>wl', '<CMD>lua print(vim.inspect(vim.lsp.bu
 vim.api.nvim_set_keymap('n', '<space>D', '<CMD>lua vim.lsp.buf.type_definition()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<space>rn', '<CMD>lua vim.lsp.buf.rename()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<space>ca', '<CMD>lua vim.lsp.buf.code_action()<CR>', opts_ns)
--- vim.api.nvim_set_keymap('n', 'gr', '<CMD>lua vim.lsp.buf.references()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<space>e', '<CMD>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '[d', '<CMD>lua vim.lsp.diagnostic.goto_prev()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', ']d', '<CMD>lua vim.lsp.diagnostic.goto_next()<CR>', opts_ns)
@@ -54,6 +56,5 @@ vim.api.nvim_set_keymap('n', '<space>q', '<CMD>lua vim.lsp.diagnostic.set_loclis
 vim.api.nvim_set_keymap('n', '<space>f', '<CMD>lua vim.lsp.buf.formatting()<CR>', opts_ns)
 
 -- lspsaga
-vim.api.nvim_set_keymap('n', 'gr', ':Lspsaga lsp_finder<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', 'gs', ':Lspsaga signature_help<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', 'rn', ':Lspsaga rename<CR>', opts_ns)
