@@ -172,20 +172,6 @@ return require('packer').startup(function(use)
   use {'L3MON4D3/LuaSnip'}         -- Snippets plugin
   use {'onsails/lspkind-nvim'}
 
-  -- -- coq_nvim
-  -- use {
-    -- 'ms-jpq/coq_nvim',
-    -- branch = 'coq',
-  -- }
-  -- use {
-    -- 'ms-jpq/coq.artifacts',
-    -- branch = 'artifacts',
-  -- }
-  -- use {
-    -- 'ms-jpq/coq.thirdparty',
-    -- branch = '3p',
-  -- }
-
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
