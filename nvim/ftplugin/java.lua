@@ -12,6 +12,7 @@ local config = {
     '-Dlog.protocol=true',
     '-Dlog.level=ALL',
     '-Xms1g',
+    '-javaagent:' .. vim.env.HOME ..'/.local/share/nvim/lsp_servers/jdtls/lombok.jar',
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
