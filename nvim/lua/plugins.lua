@@ -168,8 +168,9 @@ return require('packer').startup(function(use)
   use {'hrsh7th/cmp-buffer'}
   use {'hrsh7th/cmp-path'}
   use {'hrsh7th/cmp-cmdline'}
-  use {'saadparwaiz1/cmp_luasnip'} -- Snippets source for nvim-cmp
-  use {'L3MON4D3/LuaSnip'}         -- Snippets plugin
+  use {'hrsh7th/cmp-vsnip'}
+  use {'hrsh7th/vim-vsnip'}
+  use {'rafamadriz/friendly-snippets'}
   use {'onsails/lspkind-nvim'}
 
   -- Automatically set up your configuration after cloning packer.nvim
