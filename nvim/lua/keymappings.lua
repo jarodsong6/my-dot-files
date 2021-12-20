@@ -16,6 +16,8 @@ vim.cmd [[autocmd BufReadPost quickfix nnoremap <buffer> k :cp<CR>]]
 
 -- vim-fugitive
 vim.api.nvim_set_keymap('n', '<Leader>gb', ':Git blame<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>gs', ':Git<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>gd', ':Git diff<CR>', opts_ns)
 
 -- nvim-tree
 vim.api.nvim_set_keymap('n', '<Leader>f', ':NvimTreeToggle<CR>', opts_ns)
