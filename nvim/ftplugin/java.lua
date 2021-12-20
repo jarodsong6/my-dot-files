@@ -49,9 +49,30 @@ local config = {
   --
   -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
   init_options = {
-    bundles = {}
+    bundles = {
+      vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-debug-0.37.0/server/com.microsoft.java.debug.plugin-0.34.0.jar")
+    }
+  },
+
+  on_attach = function(client, bufnr)
+    -- With `hotcodereplace = 'auto' the debug adapter will try to apply code changes
+    -- you make during a debug session immediately.
+    -- Remove the option if you do not want that.
+    require('jdtls').setup_dap()
+  end,
+}
+
+local dap = require('dap')
+dap.configurations.java = {
+  {
+    type = 'java';
+    request = 'attach';
+    name = "Debug (Attach) - Remote";
+    hostName = "127.0.0.1";
+    port = 8001;
   },
 }
+
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
 require('jdtls').start_or_attach(config)

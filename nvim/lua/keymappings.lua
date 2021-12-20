@@ -58,3 +58,13 @@ vim.api.nvim_set_keymap('n', '<space>f', '<CMD>lua vim.lsp.buf.formatting()<CR>'
 -- lspsaga
 vim.api.nvim_set_keymap('n', 'gs', ':Lspsaga signature_help<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', 'rn', ':Lspsaga rename<CR>', opts_ns)
+
+-- nvim-dap
+vim.api.nvim_set_keymap('n', '<Leader>b', '<CMD>lua require("dap").toggle_breakpoint()<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>do', '<CMD>lua require("dap").step_over()<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>di', '<CMD>lua require("dap").step_into()<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>dc', '<CMD>lua require("dap").continue()<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>dr', '<CMD>lua require("dap").repl.open()<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>dh', '<CMD>lua require("dap.ui.widgets").hover()<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>ds', '<CMD>lua require("dap.ui.widgets").centered_float(require("dap.ui.widgets").scopes)<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>df', '<CMD>lua require("dap.ui.widgets").centered_float(require("dap.ui.widgets").frames)<CR>', opts_ns)
