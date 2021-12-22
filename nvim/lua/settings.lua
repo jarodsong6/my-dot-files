@@ -39,6 +39,7 @@ vim.cmd([[
 augroup MyColors
   autocmd!
   autocmd VimEnter * highlight vertsplit guifg=bg guibg=bg
+  autocmd VimEnter * highlight FloatBorder guifg=fg_white
 augroup END
 ]])                                                         --- hide vertical bar
 
@@ -59,7 +60,7 @@ endfunction
 ]])                                                         --- hide vertical bar
 
 -- diagnostic
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, border='single'})]]
 vim.diagnostic.config({
   virtual_text = false,
   signs = true,
