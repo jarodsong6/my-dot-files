@@ -10,6 +10,7 @@ vim.api.nvim_set_keymap('n', '<Leader>q', ':qa!<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>e', ':e ', opts_n)
 vim.api.nvim_set_keymap('n', '<Leader>v', ':vsplit ', opts_n)
 vim.api.nvim_set_keymap('n', '<Leader>s', ':split ', opts_n)
+vim.api.nvim_set_keymap('n', '<Leader>c', ':close<CR>', opts_ns)
 vim.cmd [[autocmd BufReadPost quickfix nnoremap <buffer> j :cn<CR>]]
 vim.cmd [[autocmd BufReadPost quickfix nnoremap <buffer> k :cp<CR>]]
 
@@ -29,6 +30,7 @@ vim.api.nvim_set_keymap("n", "<Leader>a", ":Rg ", opts_n)
 vim.api.nvim_set_keymap('n', 'gr', '<CMD>Telescope lsp_references<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', 'ca', '<CMD>Telescope lsp_code_actions<CR>', opts_ns)
 vim.api.nvim_set_keymap('v', 'ca', '<CMD>Telescope lsp_range_code_actions<CR>', opts_ns)
+vim.api.nvim_set_keymap("n", "<Leader>ld", "<CMD>Telescope diagnostics<CR>", opts_ns)
 
 -- hop.nvim
 vim.api.nvim_set_keymap("n", ";w", ":HopWord<CR>", opts_ns)
@@ -64,6 +66,7 @@ vim.api.nvim_set_keymap('n', 'rn', ':Lspsaga rename<CR>', opts_ns)
 -- nvim-dap
 vim.api.nvim_set_keymap('n', '<Leader>b', '<CMD>lua require("dap").toggle_breakpoint()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>do', '<CMD>lua require("dap").step_over()<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>dt', '<CMD>lua require("dap").step_out()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>di', '<CMD>lua require("dap").step_into()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>dc', '<CMD>lua require("dap").continue()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>dr', '<CMD>lua require("dap").repl.open()<CR>', opts_ns)
