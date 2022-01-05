@@ -24,6 +24,7 @@ vim.o.shortmess     = vim.o.shortmess .. 'c'              --- Don't pass message
 vim.o.signcolumn    = "number"                            --- Add extra sign column next to line number
 vim.o.list          = true
 vim.o.completeopt   = "menuone,noinsert,noselect"
+vim.o.timeoutlen    = 100
 
 vim.opt.listchars = {
   tab = '│ ',
