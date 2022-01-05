@@ -18,24 +18,17 @@ return require('packer').startup(function(use)
   use {'windwp/nvim-autopairs'}
   require('nvim-autopairs').setup{}
 
-  -- fzf
-  use {'junegunn/fzf', run = ":call fzf#install()" }
-  use {'junegunn/fzf.vim'}
-
-  vim.g.fzf_nvim_statusline = 0 -- disable statusline overwriting
-  vim.g.fzf_action = {
-    ['ctrl-t'] = 'tab split',
-    ['ctrl-s'] = 'split',
-    ['ctrl-v'] = 'vsplit'
+  -- fzf-lua
+  use {'ibhagwan/fzf-lua'}
+  require'fzf-lua'.setup {
+    winopts = {
+      height = 0.90,
+      width  = 0.99,
+    },
+    grep = {
+      rg_opts = "--column --line-number --no-heading --hidden --color=always --smart-case --max-columns=512",
+    },
   }
-
-  -- ripgrep with fzf:
-  vim.cmd [[
-  command! -bang -nargs=* Rg
-    \ call fzf#vim#grep(
-    \   'rg --column --line-number --hidden --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-    \   fzf#vim#with_preview(), <bang>0)
-  ]]
 
   -- Telescope
   use {'nvim-telescope/telescope.nvim',
