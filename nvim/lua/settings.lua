@@ -25,6 +25,7 @@ vim.o.signcolumn    = "number"                            --- Add extra sign col
 vim.o.list          = true
 vim.o.completeopt   = "menuone,noinsert,noselect"
 vim.o.timeoutlen    = 200
+vim.o.jumpoptions   = "stack"
 
 vim.opt.listchars = {
   tab = '│ ',
