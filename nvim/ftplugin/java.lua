@@ -1,7 +1,7 @@
-vim.o.expandtab   = false
-vim.o.tabstop     = 2                                   --- Insert 2 spaces for a tab
-vim.o.softtabstop = 2                                   --- Insert 2 spaces for a tab
-vim.o.shiftwidth  = 2                                   --- Change a number of space characeters inseted for indentation
+vim.o.expandtab   = true
+vim.o.tabstop     = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth  = 2
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 

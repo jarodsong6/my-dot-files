@@ -45,6 +45,7 @@ return require('packer').startup(function(use)
       layout_config = { width = 0.96 },
     }
   }
+  use {'nvim-telescope/telescope-dap.nvim'}
 
   -- Nvim Tree
   use {
