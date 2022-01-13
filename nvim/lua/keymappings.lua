@@ -59,10 +59,6 @@ vim.api.nvim_set_keymap('n', ']d', '<CMD>lua vim.lsp.diagnostic.goto_next()<CR>'
 vim.api.nvim_set_keymap('n', '<space>q', '<CMD>lua vim.lsp.diagnostic.set_loclist()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<space>f', '<CMD>lua vim.lsp.buf.formatting()<CR>', opts_ns)
 
--- lspsaga
-vim.api.nvim_set_keymap('n', 'gs', ':Lspsaga signature_help<CR>', opts_ns)
-vim.api.nvim_set_keymap('n', 'rn', ':Lspsaga rename<CR>', opts_ns)
-
 -- nvim-dap
 vim.api.nvim_set_keymap('n', '<Leader>b', '<CMD>lua require("dap").toggle_breakpoint()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>do', '<CMD>lua require("dap").step_over()<CR>', opts_ns)

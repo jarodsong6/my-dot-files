@@ -138,19 +138,6 @@ return require('packer').startup(function(use)
     end
   }
 
-  -- lspsaga.nvim
-  use {'glepnir/lspsaga.nvim'}
-  require('lspsaga').init_lsp_saga {
-    code_action_prompt = {
-      enable = false,
-      sign = false,
-      virtual_text = false,
-    },
-    finder_action_keys = {
-      open = 'o', vsplit = 'v',split = 'x',quit = 'q',scroll_down = '<C-f>', scroll_up = '<C-b>' -- quit can be a table
-    },
-  }
-
   -- nvim-jdtls
   use {'mfussenegger/nvim-jdtls'}
 
