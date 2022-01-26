@@ -143,6 +143,8 @@ return require('packer').startup(function(use)
 
   -- debugger
   use {'mfussenegger/nvim-dap'}
+  use {'leoluz/nvim-dap-go'}
+  require('dap-go').setup{}
 
   -- LSP, Cmp
   use {'neovim/nvim-lspconfig'}
