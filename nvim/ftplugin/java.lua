@@ -1,7 +1,7 @@
 vim.o.expandtab   = true
 vim.o.tabstop     = 4
 vim.o.softtabstop = 4
-vim.o.shiftwidth  = 2
+vim.o.shiftwidth  = 4
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -50,7 +50,7 @@ local config = {
   -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
   init_options = {
     bundles = {
-      vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-debug-0.37.0/server/com.microsoft.java.debug.plugin-0.34.0.jar")
+      vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-debug-0.38.0/server/com.microsoft.java.debug.plugin-0.35.0.jar")
     }
   },
 
