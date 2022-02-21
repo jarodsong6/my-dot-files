@@ -7,6 +7,11 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 
+local bundles = {
+  vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-debug-0.38.0/server/com.microsoft.java.debug.plugin-0.35.0.jar")
+};
+vim.list_extend(bundles, vim.split(vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-test-0.34.0/server/*.jar"), "\n"))
+
 local config = {
   -- The command that starts the language server
   cmd = {
@@ -49,9 +54,7 @@ local config = {
   --
   -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
   init_options = {
-    bundles = {
-      vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-debug-0.38.0/server/com.microsoft.java.debug.plugin-0.35.0.jar")
-    }
+    bundles = bundles
   },
 
   on_attach = function(client, bufnr)
