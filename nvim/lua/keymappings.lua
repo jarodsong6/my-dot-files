@@ -9,7 +9,6 @@ vim.api.nvim_set_keymap('n', '<Leader>x', ':xa<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>q', ':qa!<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>e', ':e ', opts_n)
 vim.api.nvim_set_keymap('n', '<Leader>v', ':vsplit ', opts_n)
-vim.api.nvim_set_keymap('n', '<Leader>s', ':split ', opts_n)
 vim.api.nvim_set_keymap('n', '<Leader>c', ':close<CR>', opts_ns)
 vim.cmd [[autocmd BufReadPost quickfix nnoremap <buffer> j :cn<CR>]]
 vim.cmd [[autocmd BufReadPost quickfix nnoremap <buffer> k :cp<CR>]]
@@ -26,6 +25,7 @@ vim.api.nvim_set_keymap('n', '<Leader>f', ':NvimTreeToggle<CR>', opts_ns)
 -- Telescope
 vim.api.nvim_set_keymap("n", "<Leader>o", "<CMD>Telescope find_files<CR>", opts_ns)
 vim.api.nvim_set_keymap("n", "<Leader>h", "<CMD>Telescope oldfiles<CR>", opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>s', '<CMD>Telescope current_buffer_fuzzy_find<CR>', opts_ns)
 vim.api.nvim_set_keymap("n", "<Leader>a", "<CMD>lua require('fzf-lua').grep()<CR>", opts_n)
 vim.api.nvim_set_keymap('n', 'gr', '<CMD>Telescope lsp_references<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<space>ca', '<CMD>Telescope lsp_code_actions<CR>', opts_ns)
@@ -70,3 +70,5 @@ vim.api.nvim_set_keymap('n', '<Leader>dh', '<CMD>lua require("dap.ui.widgets").h
 vim.api.nvim_set_keymap('n', '<Leader>ds', '<CMD>lua require("dap.ui.widgets").centered_float(require("dap.ui.widgets").scopes)<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>df', '<CMD>lua require("dap.ui.widgets").centered_float(require("dap.ui.widgets").frames)<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>db', '<CMD>lua require"telescope".extensions.dap.list_breakpoints{}<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>dju', '<CMD>lua require"jdtls".test_class()<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>djt', '<CMD>lua require"jdtls".test_nearest_method()<CR>', opts_ns)
