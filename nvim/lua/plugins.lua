@@ -47,13 +47,6 @@ return require('packer').startup(function(use)
   }
   use {'nvim-telescope/telescope-dap.nvim'}
 
-  -- Nvim Tree
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = 'kyazdani42/nvim-web-devicons',
-    config = function() require'nvim-tree'.setup {} end
-  }
-
   -- hop
   use {
     'phaazon/hop.nvim',
@@ -127,6 +120,57 @@ return require('packer').startup(function(use)
         }
       })
     end,
+  }
+
+  -- file-explore
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+      requires = { 
+        "nvim-lua/plenary.nvim",
+        "kyazdani42/nvim-web-devicons",
+        "MunifTanjim/nui.nvim"
+      },
+      config = function ()
+        -- See ":help neo-tree-highlights" for a list of available highlight groups
+        vim.cmd([[
+          hi link NeoTreeDirectoryName Directory
+          hi link NeoTreeDirectoryIcon NeoTreeDirectoryName
+        ]])
+
+        require("neo-tree").setup({
+          popup_border_style = "rounded",
+          enable_git_status = true,
+          enable_diagnostics = true,
+          default_component_configs = {
+            git_status = {
+              highlight = "NeoTreeDimText", -- if you remove this the status will be colorful
+            },
+          },
+          filesystem = {
+            filters = { --These filters are applied to both browsing and searching
+              show_hidden = true,
+              respect_gitignore = false,
+            },
+            window = {
+              width = 40,
+              mappings = {
+                ["<c-s>"] = "open_split",
+                ["<c-v>"] = "open_vsplit",
+              }
+            }
+          },
+          buffers = {
+            show_unloaded = true,
+            window = {
+              mappings = {
+                ["<c-s>"] = "open_split",
+                ["<c-v>"] = "open_vsplit",
+              }
+            },
+          }
+        })
+        vim.cmd([[nnoremap \ :NeoTreeReveal<cr>]])
+      end
   }
 
   -- which key
