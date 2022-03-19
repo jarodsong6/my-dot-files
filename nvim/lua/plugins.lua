@@ -182,6 +182,16 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- trouble.nvim
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+      }
+    end
+  }
+
   -- nvim-jdtls
   use {'mfussenegger/nvim-jdtls'}
 
