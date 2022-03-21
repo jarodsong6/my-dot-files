@@ -27,11 +27,11 @@ vim.api.nvim_set_keymap("n", "<Leader>o", "<CMD>Telescope find_files no_ignore=t
 vim.api.nvim_set_keymap("n", "<Leader>h", "<CMD>Telescope oldfiles<CR>", opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>s', '<CMD>Telescope current_buffer_fuzzy_find<CR>', opts_ns)
 vim.api.nvim_set_keymap("n", "<Leader>a", "<CMD>lua require('fzf-lua').grep()<CR>", opts_n)
-vim.api.nvim_set_keymap('n', 'gr', '<CMD>Telescope lsp_references<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<space>ca', '<CMD>Telescope lsp_code_actions<CR>', opts_ns)
 vim.api.nvim_set_keymap('v', '<space>ca', '<CMD>Telescope lsp_range_code_actions<CR>', opts_ns)
 vim.api.nvim_set_keymap("n", "<Leader>ld", "<CMD>Telescope diagnostics<CR>", opts_ns)
-vim.api.nvim_set_keymap("n", "<Leader>gr", "<CMD>Telescope grep_string<CR>", opts_ns)
+vim.api.nvim_set_keymap('n', 'gr', '<CMD>Telescope lsp_references<CR>', opts_ns)
+vim.api.nvim_set_keymap("n", "gs", "<CMD>Telescope grep_string<CR>", opts_ns)
 
 -- hop.nvim
 vim.api.nvim_set_keymap("n", ";w", ":HopWord<CR>", opts_ns)
