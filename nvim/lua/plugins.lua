@@ -147,9 +147,9 @@ return require('packer').startup(function(use)
             },
           },
           filesystem = {
-            filters = { --These filters are applied to both browsing and searching
-              show_hidden = true,
-              respect_gitignore = false,
+            filtered_items = { --These filters are applied to both browsing and searching
+              hide_dotfiles = false,
+              hide_gitignored = false,
             },
             window = {
               width = 40,
