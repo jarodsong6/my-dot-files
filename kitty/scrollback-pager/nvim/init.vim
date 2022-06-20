@@ -6,6 +6,7 @@ set number
 set virtualedit=all
 
 lua << EOF
+vim.o.wrap = false
 
 local opts_ns = { noremap=true, silent=true }
 
