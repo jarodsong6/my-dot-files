@@ -3,19 +3,19 @@ vim.o.tabstop     = 4
 vim.o.softtabstop = 4
 vim.o.shiftwidth  = 4
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 
 local bundles = {
-  vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-debug-0.42.0/server/com.microsoft.java.debug.plugin-0.38.0.jar")
+  vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-debug-0.43.0/server/com.microsoft.java.debug.plugin-0.39.0.jar")
 };
-vim.list_extend(bundles, vim.split(vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-test-0.35.2/server/*.jar"), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-test-0.36.0/server/*.jar"), "\n"))
 
 local config = {
   -- The command that starts the language server
   cmd = {
-    '/usr/local/opt/openjdk/libexec/openjdk.jdk/Contents/Home/bin/java',
+    '/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home/bin/java',
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
     '-Dosgi.bundles.defaultStartLevel=4',
     '-Declipse.product=org.eclipse.jdt.ls.core.product',

@@ -87,7 +87,7 @@ return require('packer').startup(function(use)
 
   -- tagbar
   use {'preservim/tagbar'}
-  vim.g.tagbar_ctags_bin = '/usr/local/bin/ctags'
+  vim.g.tagbar_ctags_bin = '/opt/homebrew/bin/ctags'
 
   -- vim-illuminate
   use {'RRethy/vim-illuminate'}
