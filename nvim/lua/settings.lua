@@ -26,6 +26,7 @@ vim.o.list          = true
 vim.o.completeopt   = "menuone,noinsert,noselect"
 vim.o.timeoutlen    = 200
 vim.o.jumpoptions   = "stack"
+vim.o.mouse         = ""
 
 vim.opt.listchars = {
   tab = '│ ',
