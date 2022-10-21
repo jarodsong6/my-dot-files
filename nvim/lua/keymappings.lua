@@ -23,24 +23,25 @@ vim.api.nvim_set_keymap('n', '<Leader>gd', ':Git diff<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>f', ':NeoTreeReveal<CR>', opts_ns)
 
 -- Telescope
-vim.api.nvim_set_keymap("n", "<Leader>o", "<CMD>Telescope find_files<CR>", opts_ns)
-vim.api.nvim_set_keymap("n", "<Leader>h", "<CMD>Telescope oldfiles<CR>", opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>o', '<CMD>Telescope find_files<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>h', '<CMD>Telescope oldfiles<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>s', '<CMD>Telescope current_buffer_fuzzy_find<CR>', opts_ns)
-vim.api.nvim_set_keymap("n", "<Leader>a", "<CMD>lua require('fzf-lua').grep()<CR>", opts_n)
+vim.api.nvim_set_keymap('n', '<Leader>a', '<CMD>lua require("fzf-lua").grep()<CR>', opts_n)
 vim.api.nvim_set_keymap('n', '<space>ca', '<CMD>Telescope lsp_code_actions<CR>', opts_ns)
 vim.api.nvim_set_keymap('v', '<space>ca', '<CMD>Telescope lsp_range_code_actions<CR>', opts_ns)
-vim.api.nvim_set_keymap("n", "<Leader>ld", "<CMD>Telescope diagnostics<CR>", opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>ld', '<CMD>Telescope diagnostics<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', 'gr', '<CMD>Telescope lsp_references<CR>', opts_ns)
-vim.api.nvim_set_keymap("n", "gs", "<CMD>Telescope grep_string<CR>", opts_ns)
+vim.api.nvim_set_keymap('n', 'gs', '<CMD>Telescope grep_string<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '"', '<CMD>Telescope neoclip<CR>', opts_ns)
 
 -- hop.nvim
-vim.api.nvim_set_keymap("n", ";w", ":HopWord<CR>", opts_ns)
-vim.api.nvim_set_keymap("v", ";w", "<CMD>HopWord<CR>", opts_ns)
-vim.api.nvim_set_keymap("n", ";j", ":HopLine<CR>", opts_ns)
-vim.api.nvim_set_keymap("v", ";j", "<CMD>HopLine<CR>", opts_ns)
+vim.api.nvim_set_keymap('n', ';w', ':HopWord<CR>', opts_ns)
+vim.api.nvim_set_keymap('v', ';w', '<CMD>HopWord<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', ';j', ':HopLine<CR>', opts_ns)
+vim.api.nvim_set_keymap('v', ';j', '<CMD>HopLine<CR>', opts_ns)
 
 -- tagbar
-vim.api.nvim_set_keymap("n", "<Leader>m", ":TagbarToggle<CR>", opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>m', ':TagbarToggle<CR>', opts_ns)
 
 -- lsp nav
 vim.api.nvim_set_keymap('n', 'gD', '<CMD>lua vim.lsp.buf.declaration()<CR>', opts_ns)

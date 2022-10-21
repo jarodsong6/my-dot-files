@@ -39,6 +39,7 @@ return require('packer').startup(function(use)
     }
   }
   require('telescope').load_extension('fzf')
+  require('telescope').load_extension('neoclip')
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   require('telescope').setup{
     defaults = {
@@ -190,6 +191,15 @@ return require('packer').startup(function(use)
       require("trouble").setup {
       }
     end
+  }
+
+  use {
+    "AckslD/nvim-neoclip.lua",
+    config = function()
+      require('neoclip').setup({
+        history = 16,
+      })
+    end,
   }
 
   -- nvim-jdtls
