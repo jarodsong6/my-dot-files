@@ -62,6 +62,17 @@ function! ToggleWindowSize()
 endfunction
 ]])                                                         --- hide vertical bar
 
+-- preservim/tagbar
+vim.g.tagbar_ctags_bin = '/opt/homebrew/bin/ctags'
+
+-- vim-illuminate
+vim.cmd([[
+augroup illuminate_augroup
+  autocmd!
+  autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline
+augroup END
+]])
+
 -- diagnostic
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, border='single'})]]
 vim.diagnostic.config({

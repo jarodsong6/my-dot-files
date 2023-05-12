@@ -1,8 +1,6 @@
 local opts_ns = { noremap=true, silent=true }
 local opts_n  = { noremap=true, }
 
-vim.g.mapleader = ','
-
 -- convinient convenient
 vim.api.nvim_set_keymap('n', '<Leader>w', ':w<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>x', ':xa<CR>', opts_ns)
