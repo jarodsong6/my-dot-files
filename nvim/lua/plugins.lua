@@ -16,7 +16,6 @@ vim.g.maplocalleader = ','
 
 return require('lazy').setup({
 
-  'junegunn/seoul256.vim',
   'tpope/vim-fugitive',
   'mhinz/vim-signify',
   'mattn/emmet-vim',
@@ -35,6 +34,16 @@ return require('lazy').setup({
   'hrsh7th/vim-vsnip',
   'rafamadriz/friendly-snippets',
   'onsails/lspkind-nvim',
+
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    config = function()
+      require("catppuccin").setup({
+        flavour = "frappe",
+      })
+    end,
+  },
 
   -- comment
   {
@@ -125,7 +134,7 @@ return require('lazy').setup({
     config = function()
       require('lualine').setup({
         options = {
-          theme = 'seoul256'
+          theme = 'catppuccin'
         },
         sections = {
           lualine_c = {

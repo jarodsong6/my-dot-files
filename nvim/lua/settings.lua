@@ -35,7 +35,7 @@ vim.opt.listchars = {
   precedes = '<'
 }
 
-vim.cmd('colorscheme seoul256')
+vim.cmd.colorscheme "catppuccin"
 
 vim.cmd('filetype plugin indent on')                        --- Enables plugin & indent
 vim.cmd([[
@@ -83,8 +83,8 @@ vim.diagnostic.config({
   severity_sort = false,
 })
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
+--  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+--  for type, icon in pairs(signs) do
+  --  local hl = "DiagnosticSign" .. type
+  --  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+--  end
