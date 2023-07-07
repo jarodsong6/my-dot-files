@@ -21,6 +21,7 @@ return require('lazy').setup({
   'mattn/emmet-vim',
   'mfussenegger/nvim-jdtls',
   'RRethy/vim-illuminate',
+  'Exafunction/codeium.vim',
 
   -- LSP, Cmp
   'neovim/nvim-lspconfig',
@@ -120,7 +121,6 @@ return require('lazy').setup({
   -- hop
   {
     'phaazon/hop.nvim',
-    branch = 'v1', -- optional but strongly recommended
     config = function()
       -- you can configure Hop the way you like here; see :h hop-config
       require('hop').setup({ keys = 'etovxqpdygfblzhckisuran' })
@@ -143,7 +143,7 @@ return require('lazy').setup({
               file_status = true,
               path = 1
             }
-          }
+          },
         },
       })
     end

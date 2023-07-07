@@ -56,7 +56,7 @@ vim.api.nvim_set_keymap('n', '<space>e', '<CMD>lua vim.lsp.diagnostic.show_line_
 vim.api.nvim_set_keymap('n', '[d', '<CMD>lua vim.lsp.diagnostic.goto_prev()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', ']d', '<CMD>lua vim.lsp.diagnostic.goto_next()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<space>q', '<CMD>lua vim.lsp.diagnostic.set_loclist()<CR>', opts_ns)
-vim.api.nvim_set_keymap('n', '<space>f', '<CMD>lua vim.lsp.buf.formatting()<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<space>f', '<CMD>lua vim.lsp.buf.format()<CR>', opts_ns)
 
 -- nvim-dap
 vim.api.nvim_set_keymap('n', '<Leader>b', '<CMD>lua require("dap").toggle_breakpoint()<CR>', opts_ns)
@@ -75,3 +75,9 @@ vim.api.nvim_set_keymap('n', '<Leader>djt', '<CMD>lua require"jdtls".test_neares
 -- trouble.nvim
 vim.api.nvim_set_keymap('n', '<Leader>td', '<CMD>TroubleToggle document_diagnostics<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>tw', '<CMD>TroubleToggle workspace_diagnostics<CR>', opts_ns)
+
+-- codium.nvim
+vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
+vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
