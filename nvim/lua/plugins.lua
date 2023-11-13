@@ -25,7 +25,6 @@ return require('lazy').setup({
 
   -- LSP, Cmp
   'neovim/nvim-lspconfig',
-  'williamboman/nvim-lsp-installer',
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-nvim-lsp',
   'hrsh7th/cmp-buffer',
@@ -35,6 +34,22 @@ return require('lazy').setup({
   'hrsh7th/vim-vsnip',
   'rafamadriz/friendly-snippets',
   'onsails/lspkind-nvim',
+
+  {
+    'williamboman/mason.nvim',
+    config = function()
+      require('mason').setup()
+    end,
+  },
+
+  {
+    'williamboman/mason-lspconfig.nvim',
+    config = function()
+      require('mason-lspconfig').setup({
+        ensure_installed = { "gopls", "groovyls", "jdtls", "jedi_language_server", "tsserver" , "lua_ls" },
+      })
+    end,
+  },
 
   {
     "catppuccin/nvim",

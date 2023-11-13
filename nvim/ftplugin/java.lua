@@ -8,9 +8,9 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 
 local bundles = {
-  vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-debug-0.51.0/server/com.microsoft.java.debug.plugin-0.46.0.jar")
+  vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-debug-0.55.0/server/com.microsoft.java.debug.plugin-0.50.0.jar")
 };
-vim.list_extend(bundles, vim.split(vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-test-0.39.0/server/*.jar"), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-debug-0.55.0/server/"), "\n"))
 
 local config = {
   -- The command that starts the language server
@@ -22,12 +22,12 @@ local config = {
     '-Dlog.protocol=true',
     '-Dlog.level=ALL',
     '-Xms1g',
-    '-javaagent:' .. vim.env.HOME ..'/.local/share/nvim/lsp_servers/jdtls/lombok.jar',
+    '-javaagent:' .. vim.env.HOME ..'/.local/share/nvim/mason/packages/jdtls/lombok.jar',
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-    '-jar', vim.env.HOME .. '/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
-    '-configuration', vim.env.HOME .. '/.local/share/nvim/lsp_servers/jdtls/config_mac/',
+    '-jar', vim.env.HOME .. '/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar',
+    '-configuration', vim.env.HOME .. '/.local/share/nvim/mason/packages/jdtls/config_mac_arm/',
     -- See `data directory configuration` section in the README
     '-data', vim.fn.expand('~/.cache/jdtls-workspace') .. workspace_dir
   },
