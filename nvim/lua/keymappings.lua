@@ -28,8 +28,8 @@ vim.api.nvim_set_keymap('n', '<Leader>a', '<CMD>lua require("fzf-lua").grep()<CR
 vim.api.nvim_set_keymap('n', '<space>ca', '<CMD>Telescope lsp_code_actions<CR>', opts_ns)
 vim.api.nvim_set_keymap('v', '<space>ca', '<CMD>Telescope lsp_range_code_actions<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>ld', '<CMD>Telescope diagnostics<CR>', opts_ns)
-vim.api.nvim_set_keymap('n', 'gr', '<CMD>Telescope lsp_references<CR>', opts_ns)
-vim.api.nvim_set_keymap('n', 'gs', '<CMD>Telescope grep_string<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', 'gr', "<CMD>lua require('telescope.builtin').lsp_references{fname_width = 86}<CR>", opts_ns)
+vim.api.nvim_set_keymap('n', 'gs', "<CMD>lua require('telescopePickers').prettyGrepPicker({ picker = 'grep_string' })<CR>", opts_ns)
 vim.api.nvim_set_keymap('n', '"', '<CMD>Telescope neoclip<CR>', opts_ns)
 
 -- hop.nvim

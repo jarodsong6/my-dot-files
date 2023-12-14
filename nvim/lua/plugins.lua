@@ -46,7 +46,7 @@ return require('lazy').setup({
     'williamboman/mason-lspconfig.nvim',
     config = function()
       require('mason-lspconfig').setup({
-        ensure_installed = { "gopls", "groovyls", "jdtls", "jedi_language_server", "tsserver" , "lua_ls" },
+        ensure_installed = { "gopls", "groovyls", "jdtls", "pyright", "tsserver" , "lua_ls" },
       })
     end,
   },
