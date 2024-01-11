@@ -209,6 +209,7 @@ return require('lazy').setup({
             },
             window = {
               width = 40,
+              auto_expand_width = true,
               mappings = {
                 ["<c-s>"] = "open_split",
                 ["<c-v>"] = "open_vsplit",
