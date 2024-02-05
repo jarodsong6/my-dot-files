@@ -26,7 +26,7 @@ local config = {
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-    '-jar', vim.env.HOME .. '/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar',
+    '-jar', vim.env.HOME .. '/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar',
     '-configuration', vim.env.HOME .. '/.local/share/nvim/mason/packages/jdtls/config_mac_arm/',
     -- See `data directory configuration` section in the README
     '-data', vim.fn.expand('~/.cache/jdtls-workspace') .. workspace_dir
