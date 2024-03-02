@@ -39,7 +39,7 @@ vim.api.nvim_set_keymap('n', ';j', ':HopLine<CR>', opts_ns)
 vim.api.nvim_set_keymap('v', ';j', '<CMD>HopLine<CR>', opts_ns)
 
 -- tagbar
-vim.api.nvim_set_keymap('n', '<Leader>m', ':TagbarToggle<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>m', ':AerialToggle<CR>', opts_ns)
 
 -- lsp nav
 vim.api.nvim_set_keymap('n', 'gD', '<CMD>lua vim.lsp.buf.declaration()<CR>', opts_ns)

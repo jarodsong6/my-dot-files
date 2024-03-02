@@ -61,7 +61,6 @@ return require('lazy').setup({
     end,
   },
 
-  -- comment
   {
     "winston0410/commented.nvim",
     config = function()
@@ -71,7 +70,6 @@ return require('lazy').setup({
     end,
   },
 
-  -- debugger
   'mfussenegger/nvim-dap',
   {
     'leoluz/nvim-dap-go',
@@ -88,7 +86,6 @@ return require('lazy').setup({
     end,
   },
 
-  -- fzf-lua
   {
     'ibhagwan/fzf-lua',
     config = function()
@@ -113,7 +110,6 @@ return require('lazy').setup({
     end,
   },
 
-  -- Telescope
   {'nvim-telescope/telescope.nvim',
     dependencies = {
       {'nvim-lua/popup.nvim'},
@@ -128,12 +124,12 @@ return require('lazy').setup({
       })
       require('telescope').load_extension('fzf')
       require('telescope').load_extension('neoclip')
+      require("telescope").load_extension("aerial")
     end,
   },
   {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   'nvim-telescope/telescope-dap.nvim',
 
-  -- hop
   {
     'phaazon/hop.nvim',
     config = function()
@@ -142,7 +138,6 @@ return require('lazy').setup({
     end
   },
 
-  -- lualine.nvim
   {
     'nvim-lualine/lualine.nvim',
     dependencies = {'kyazdani42/nvim-web-devicons', lazy = true},
@@ -164,7 +159,6 @@ return require('lazy').setup({
     end
   },
 
-  -- nvim-treesitter
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -230,7 +224,6 @@ return require('lazy').setup({
       end
   },
 
-  -- trouble.nvim
   {
     "folke/trouble.nvim",
     dependencies = "kyazdani42/nvim-web-devicons",
@@ -248,6 +241,29 @@ return require('lazy').setup({
     end,
   },
 
-  -- tagbar
-  'preservim/tagbar',
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+      }
+  },
+
+  {
+    'stevearc/aerial.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = {
+       "nvim-treesitter/nvim-treesitter",
+       "nvim-tree/nvim-web-devicons"
+    },
+  },
 })

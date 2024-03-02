@@ -8,9 +8,9 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 
 local bundles = {
-  vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-debug-0.55.0/server/com.microsoft.java.debug.plugin-0.50.0.jar")
+  vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-debug-0.56.2/server/com.microsoft.java.debug.plugin-0.51.1.jar")
 };
-vim.list_extend(bundles, vim.split(vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-debug-0.55.0/server/"), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(vim.env.HOME .. "/.vscode/extensions/vscjava.vscode-java-debug-0.56.2/server/"), "\n"))
 
 local config = {
   -- The command that starts the language server
