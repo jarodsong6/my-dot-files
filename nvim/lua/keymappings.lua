@@ -29,7 +29,6 @@ vim.api.nvim_set_keymap('n', '<space>ca', '<CMD>lua vim.lsp.buf.code_action()<CR
 vim.api.nvim_set_keymap('v', '<space>ca', '<CMD>Telescope lsp_range_code_actions<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>ld', '<CMD>Telescope diagnostics<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', 'gr', "<CMD>lua require('telescope.builtin').lsp_references{fname_width = 86}<CR>", opts_ns)
-vim.api.nvim_set_keymap('n', 'gs', "<CMD>lua require('telescopePickers').prettyGrepPicker({ picker = 'grep_string' })<CR>", opts_ns)
 vim.api.nvim_set_keymap('n', '"', '<CMD>Telescope neoclip<CR>', opts_ns)
 
 -- hop.nvim
@@ -38,7 +37,7 @@ vim.api.nvim_set_keymap('v', ';w', '<CMD>HopWord<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', ';j', ':HopLine<CR>', opts_ns)
 vim.api.nvim_set_keymap('v', ';j', '<CMD>HopLine<CR>', opts_ns)
 
--- tagbar
+-- aerial
 vim.api.nvim_set_keymap('n', '<Leader>m', ':AerialToggle<CR>', opts_ns)
 
 -- lsp nav
@@ -52,10 +51,6 @@ vim.api.nvim_set_keymap('n', '<space>wr', '<CMD>lua vim.lsp.buf.remove_workspace
 vim.api.nvim_set_keymap('n', '<space>wl', '<CMD>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<space>D', '<CMD>lua vim.lsp.buf.type_definition()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<space>rn', '<CMD>lua vim.lsp.buf.rename()<CR>', opts_ns)
-vim.api.nvim_set_keymap('n', '<space>e', '<CMD>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts_ns)
-vim.api.nvim_set_keymap('n', '[d', '<CMD>lua vim.lsp.diagnostic.goto_prev()<CR>', opts_ns)
-vim.api.nvim_set_keymap('n', ']d', '<CMD>lua vim.lsp.diagnostic.goto_next()<CR>', opts_ns)
-vim.api.nvim_set_keymap('n', '<space>q', '<CMD>lua vim.lsp.diagnostic.set_loclist()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<space>f', '<CMD>lua vim.lsp.buf.format()<CR>', opts_ns)
 
 -- nvim-dap
@@ -73,7 +68,6 @@ vim.api.nvim_set_keymap('n', '<Leader>dju', '<CMD>lua require"jdtls".test_class(
 vim.api.nvim_set_keymap('n', '<Leader>djt', '<CMD>lua require"jdtls".test_nearest_method()<CR>', opts_ns)
 
 -- trouble.nvim
-vim.api.nvim_set_keymap('n', '<Leader>td', '<CMD>TroubleToggle document_diagnostics<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>tw', '<CMD>TroubleToggle workspace_diagnostics<CR>', opts_ns)
 
 -- codium.nvim
