@@ -112,9 +112,15 @@ return require('lazy').setup({
 
   {'nvim-telescope/telescope.nvim',
     dependencies = {
-      {'nvim-lua/popup.nvim'},
-      {'nvim-lua/plenary.nvim'},
-      {'nvim-telescope/telescope-fzf-native.nvim'},
+      'nvim-lua/popup.nvim',
+      'nvim-lua/plenary.nvim',
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make',
+        cond = function()
+          return vim.fn.executable 'make' == 1
+        end,
+      },
     },
     config = function()
       require('telescope').setup({
@@ -127,7 +133,6 @@ return require('lazy').setup({
       require("telescope").load_extension("aerial")
     end,
   },
-  {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   'nvim-telescope/telescope-dap.nvim',
 
   {
@@ -140,7 +145,7 @@ return require('lazy').setup({
 
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = {'kyazdani42/nvim-web-devicons', lazy = true},
+    dependencies = {'nvim-tree/nvim-web-devicons', lazy = true},
     config = function()
       require('lualine').setup({
         options = {
@@ -177,7 +182,7 @@ return require('lazy').setup({
     "nvim-neo-tree/neo-tree.nvim",
       dependencies = {
         "nvim-lua/plenary.nvim",
-        "kyazdani42/nvim-web-devicons",
+        "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim"
       },
       config = function ()
@@ -226,7 +231,7 @@ return require('lazy').setup({
 
   {
     "folke/trouble.nvim",
-    dependencies = "kyazdani42/nvim-web-devicons",
+    dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       require("trouble").setup {
       }
@@ -265,5 +270,13 @@ return require('lazy').setup({
        "nvim-treesitter/nvim-treesitter",
        "nvim-tree/nvim-web-devicons"
     },
+    config = function()
+      require('aerial').setup({
+        layout = {
+          max_width = { 200, 0.5 },
+          resize_to_content = true,
+        },
+      })
+    end,
   },
 })
