@@ -19,7 +19,6 @@ return require('lazy').setup({
   'tpope/vim-fugitive',
   'mhinz/vim-signify',
   'mattn/emmet-vim',
-  'mfussenegger/nvim-jdtls',
   'RRethy/vim-illuminate',
   'Exafunction/codeium.vim',
 
@@ -36,17 +35,30 @@ return require('lazy').setup({
   'onsails/lspkind-nvim',
 
   {
-    'williamboman/mason.nvim',
+    "williamboman/mason.nvim",
     config = function()
-      require('mason').setup()
+      require("mason").setup()
     end,
   },
 
   {
-    'williamboman/mason-lspconfig.nvim',
+    "williamboman/mason-lspconfig.nvim",
     config = function()
-      require('mason-lspconfig').setup({
-        ensure_installed = { "gopls", "groovyls", "jdtls", "pyright", "tsserver" , "lua_ls" },
+      require("mason-lspconfig").setup()
+    end,
+  },
+
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    config = function()
+      require("mason-tool-installer").setup({
+        ensure_installed = {
+          "gopls",
+          "pyright",
+          "tsserver",
+          "lua_ls",
+          "delve",
+        },
       })
     end,
   },
@@ -70,12 +82,46 @@ return require('lazy').setup({
     end,
   },
 
-  'mfussenegger/nvim-dap',
   {
-    'leoluz/nvim-dap-go',
-    config = function()
-      require('dap-go').setup({})
-    end,
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      {
+        "rcarriga/nvim-dap-ui",
+        "nvim-neotest/nvim-nio",
+        config = function(_, opts)
+          local dap = require("dap")
+          local dapui = require("dapui")
+          dapui.setup(opts)
+          dap.listeners.after.event_initialized["dapui_config"] = function()
+            dapui.open({})
+          end
+          dap.listeners.before.event_terminated["dapui_config"] = function()
+            dapui.close({})
+          end
+          dap.listeners.before.event_exited["dapui_config"] = function()
+            dapui.close({})
+          end
+        end,
+      },
+      {
+        "leoluz/nvim-dap-go",
+        config = function()
+          require("dap-go").setup()
+        end,
+      },
+      {
+        "jay-babu/mason-nvim-dap.nvim",
+        dependencies = "mason.nvim",
+        cmd = { "DapInstall", "DapUninstall" },
+        opts = {
+          automatic_installation = true,
+          handlers = {},
+          ensure_installed = {
+            "delve"
+          },
+        },
+      },
+    },
   },
 
   {
@@ -169,7 +215,32 @@ return require('lazy').setup({
     build = ':TSUpdate',
     config = function()
       require('nvim-treesitter.configs').setup({
-        ensure_installed = {"bash", "cmake", "comment", "css", "dockerfile", "dot", "fish", "go", "html", "http", "java", "javascript", "jsdoc", "json", "json5", "lua", "make", "markdown", "python", "regex", "scss", "tsx", "typescript", "vim", "yaml"},
+        ensure_installed = {
+          "bash",
+          "cmake",
+          "comment",
+          "css",
+          "dockerfile",
+          "dot",
+          "fish",
+          "go",
+          "html",
+          "http",
+          "javascript",
+          "jsdoc",
+          "json",
+          "json5",
+          "lua",
+          "make",
+          "markdown",
+          "python",
+          "regex",
+          "scss",
+          "tsx",
+          "typescript",
+          "vim",
+          "yaml",
+        },
         highlight = {
           enable = true,              -- false will disable the whole extension
         }
@@ -279,4 +350,18 @@ return require('lazy').setup({
       })
     end,
   },
+
+  {
+    'kevinhwang91/nvim-ufo',
+    dependencies = {
+      'kevinhwang91/promise-async'
+    },
+    config = function()
+      require('ufo').setup({
+        provider_selector = function(bufnr, filetype, buftype)
+          return {'treesitter', 'indent'}
+        end
+      })
+    end,
+  }
 })

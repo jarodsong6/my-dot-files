@@ -66,6 +66,7 @@ vim.api.nvim_set_keymap('n', '<Leader>df', '<CMD>lua require("dap.ui.widgets").c
 vim.api.nvim_set_keymap('n', '<Leader>db', '<CMD>lua require"telescope".extensions.dap.list_breakpoints{}<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>dju', '<CMD>lua require"jdtls".test_class()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>djt', '<CMD>lua require"jdtls".test_nearest_method()<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>dg', '<CMD>lua require("dap-go").debug_test()<CR>', opts_ns)
 
 -- trouble.nvim
 vim.api.nvim_set_keymap('n', '<Leader>tw', '<CMD>TroubleToggle workspace_diagnostics<CR>', opts_ns)
@@ -75,3 +76,7 @@ vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, 
 vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
 vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
 vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+
+-- Using ufo provider need remap `zR` and `zM`.
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
