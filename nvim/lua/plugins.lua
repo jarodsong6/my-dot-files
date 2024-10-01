@@ -55,7 +55,7 @@ return require('lazy').setup({
         ensure_installed = {
           "gopls",
           "pyright",
-          "tsserver",
+          "ts_ls",
           "lua_ls",
           "delve",
         },

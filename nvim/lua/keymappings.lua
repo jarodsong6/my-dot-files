@@ -18,7 +18,7 @@ vim.api.nvim_set_keymap('n', '<Leader>gs', ':Git<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>gd', ':Git diff<CR>', opts_ns)
 
 -- nvim-tree
-vim.api.nvim_set_keymap('n', '<Leader>f', ':Neotree source=filesystem reveal=true<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>f', ':Neotree source=filesystem reveal<CR>', opts_ns)
 
 -- Telescope
 vim.api.nvim_set_keymap('n', '<Leader>o', '<CMD>Telescope find_files<CR>', opts_ns)
