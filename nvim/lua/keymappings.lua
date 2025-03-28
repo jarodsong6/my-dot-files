@@ -1,5 +1,5 @@
-local opts_ns = { noremap=true, silent=true }
-local opts_n  = { noremap=true, }
+local opts_ns = { noremap = true, silent = true }
+local opts_n  = { noremap = true, }
 
 -- convinient convenient
 vim.api.nvim_set_keymap('n', '<Leader>w', ':w<CR>', opts_ns)
@@ -48,7 +48,8 @@ vim.api.nvim_set_keymap('n', 'gi', '<CMD>lua vim.lsp.buf.implementation()<CR>', 
 vim.api.nvim_set_keymap('n', '<C-k>', '<CMD>lua vim.lsp.buf.signature_help()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<space>wa', '<CMD>lua vim.lsp.buf.add_workspace_folder()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<space>wr', '<CMD>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts_ns)
-vim.api.nvim_set_keymap('n', '<space>wl', '<CMD>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<space>wl', '<CMD>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
+  opts_ns)
 vim.api.nvim_set_keymap('n', '<space>D', '<CMD>lua vim.lsp.buf.type_definition()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<space>rn', '<CMD>lua vim.lsp.buf.rename()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<space>f', '<CMD>lua vim.lsp.buf.format()<CR>', opts_ns)
@@ -61,8 +62,10 @@ vim.api.nvim_set_keymap('n', '<Leader>di', '<CMD>lua require("dap").step_into()<
 vim.api.nvim_set_keymap('n', '<Leader>dc', '<CMD>lua require("dap").continue()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>dr', '<CMD>lua require("dap").repl.open()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>dh', '<CMD>lua require("dap.ui.widgets").hover()<CR>', opts_ns)
-vim.api.nvim_set_keymap('n', '<Leader>ds', '<CMD>lua require("dap.ui.widgets").centered_float(require("dap.ui.widgets").scopes)<CR>', opts_ns)
-vim.api.nvim_set_keymap('n', '<Leader>df', '<CMD>lua require("dap.ui.widgets").centered_float(require("dap.ui.widgets").frames)<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>ds',
+  '<CMD>lua require("dap.ui.widgets").centered_float(require("dap.ui.widgets").scopes)<CR>', opts_ns)
+vim.api.nvim_set_keymap('n', '<Leader>df',
+  '<CMD>lua require("dap.ui.widgets").centered_float(require("dap.ui.widgets").frames)<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>db', '<CMD>lua require"telescope".extensions.dap.list_breakpoints{}<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>dju', '<CMD>lua require"jdtls".test_class()<CR>', opts_ns)
 vim.api.nvim_set_keymap('n', '<Leader>djt', '<CMD>lua require"jdtls".test_nearest_method()<CR>', opts_ns)
@@ -71,11 +74,11 @@ vim.api.nvim_set_keymap('n', '<Leader>dg', '<CMD>lua require("dap-go").debug_tes
 -- trouble.nvim
 vim.api.nvim_set_keymap('n', '<Leader>tw', '<CMD>TroubleToggle workspace_diagnostics<CR>', opts_ns)
 
--- codium.nvim
-vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
-vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
-vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
-vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+--  -- codium.nvim
+--  vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
+--  vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+--  vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+--  vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
 
 -- Using ufo provider need remap `zR` and `zM`.
 vim.keymap.set('n', 'zR', require('ufo').openAllFolds)

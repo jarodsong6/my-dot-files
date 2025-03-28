@@ -20,7 +20,21 @@ return require('lazy').setup({
   'mhinz/vim-signify',
   'mattn/emmet-vim',
   'RRethy/vim-illuminate',
-  'Exafunction/codeium.vim',
+  --  'Exafunction/codeium.vim',
+  {
+    "github/copilot.vim",
+    lazy = false,
+    config = function()
+      vim.g.copilot_no_tab_map = true
+      local keymap = vim.keymap.set
+      keymap("i", "<C-g>", 'copilot#Accept("<CR>")',
+        { silent = true, expr = true, script = true, replace_keycodes = false })
+      keymap("i", "<C-j>", "<Plug>(copilot-next)")
+      keymap("i", "<C-k>", "<Plug>(copilot-previous)")
+      keymap("i", "<C-s>", "<Plug>(copilot-suggest)")
+    end
+  },
+
 
   -- LSP, Cmp
   'neovim/nvim-lspconfig',
@@ -53,6 +67,7 @@ return require('lazy').setup({
     config = function()
       require("mason-tool-installer").setup({
         ensure_installed = {
+          { 'golangci-lint', version = 'v1.54.2' },
           "gopls",
           "pyright",
           "ts_ls",
@@ -77,7 +92,7 @@ return require('lazy').setup({
     "winston0410/commented.nvim",
     config = function()
       require("commented").setup({
-        keybindings = {n = "gc", v = "gc", nl = "gcc"}
+        keybindings = { n = "gc", v = "gc", nl = "gcc" }
       })
     end,
   },
@@ -156,7 +171,8 @@ return require('lazy').setup({
     end,
   },
 
-  {'nvim-telescope/telescope.nvim',
+  {
+    'nvim-telescope/telescope.nvim',
     dependencies = {
       'nvim-lua/popup.nvim',
       'nvim-lua/plenary.nvim',
@@ -191,7 +207,7 @@ return require('lazy').setup({
 
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = {'nvim-tree/nvim-web-devicons', lazy = true},
+    dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true },
     config = function()
       require('lualine').setup({
         options = {
@@ -240,9 +256,11 @@ return require('lazy').setup({
           "typescript",
           "vim",
           "yaml",
+          "cue",
+          "terraform",
         },
         highlight = {
-          enable = true,              -- false will disable the whole extension
+          enable = true, -- false will disable the whole extension
         }
       })
     end,
@@ -251,53 +269,53 @@ return require('lazy').setup({
   -- file-explore
   {
     "nvim-neo-tree/neo-tree.nvim",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons",
-        "MunifTanjim/nui.nvim"
-      },
-      config = function ()
-        -- See ":help neo-tree-highlights" for a list of available highlight groups
-        vim.cmd([[
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim"
+    },
+    config = function()
+      -- See ":help neo-tree-highlights" for a list of available highlight groups
+      vim.cmd([[
           hi link NeoTreeDirectoryName Directory
           hi link NeoTreeDirectoryIcon NeoTreeDirectoryName
         ]])
 
-        require("neo-tree").setup({
-          popup_border_style = "rounded",
-          enable_git_status = true,
-          enable_diagnostics = true,
-          default_component_configs = {
-            git_status = {
-              highlight = "NeoTreeDimText", -- if you remove this the status will be colorful
-            },
+      require("neo-tree").setup({
+        popup_border_style = "rounded",
+        enable_git_status = true,
+        enable_diagnostics = true,
+        default_component_configs = {
+          git_status = {
+            highlight = "NeoTreeDimText", -- if you remove this the status will be colorful
           },
-          filesystem = {
-            filtered_items = { --These filters are applied to both browsing and searching
-              hide_dotfiles = false,
-              hide_gitignored = false,
-            },
-            window = {
-              width = 40,
-              auto_expand_width = true,
-              mappings = {
-                ["<c-s>"] = "open_split",
-                ["<c-v>"] = "open_vsplit",
-              }
+        },
+        filesystem = {
+          filtered_items = { --These filters are applied to both browsing and searching
+            hide_dotfiles = false,
+            hide_gitignored = false,
+          },
+          window = {
+            width = 40,
+            auto_expand_width = true,
+            mappings = {
+              ["<c-s>"] = "open_split",
+              ["<c-v>"] = "open_vsplit",
+            }
+          }
+        },
+        buffers = {
+          show_unloaded = true,
+          window = {
+            mappings = {
+              ["<c-s>"] = "open_split",
+              ["<c-v>"] = "open_vsplit",
             }
           },
-          buffers = {
-            show_unloaded = true,
-            window = {
-              mappings = {
-                ["<c-s>"] = "open_split",
-                ["<c-v>"] = "open_vsplit",
-              }
-            },
-          }
-        })
-        vim.cmd([[nnoremap \ :NeoTreeReveal<cr>]])
-      end
+        }
+      })
+      vim.cmd([[nnoremap \ :NeoTreeReveal<cr>]])
+    end
   },
 
   {
@@ -330,7 +348,7 @@ return require('lazy').setup({
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
       "rcarriga/nvim-notify",
-      }
+    }
   },
 
   {
@@ -338,8 +356,8 @@ return require('lazy').setup({
     opts = {},
     -- Optional dependencies
     dependencies = {
-       "nvim-treesitter/nvim-treesitter",
-       "nvim-tree/nvim-web-devicons"
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
     },
     config = function()
       require('aerial').setup({
@@ -359,9 +377,18 @@ return require('lazy').setup({
     config = function()
       require('ufo').setup({
         provider_selector = function(bufnr, filetype, buftype)
-          return {'treesitter', 'indent'}
+          return { 'treesitter', 'indent' }
         end
       })
     end,
-  }
+  },
+
+  {
+    'mfussenegger/nvim-lint',
+    config = function()
+      require('lint').linters_by_ft = {
+        markdown = { 'golangcilint' },
+      }
+    end,
+  },
 })
