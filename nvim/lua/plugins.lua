@@ -115,6 +115,7 @@ return require('lazy').setup({
     config = function()
       require("catppuccin").setup({
         flavour = "frappe",
+        transparent_background = true,
       })
     end,
   },
@@ -380,6 +381,15 @@ return require('lazy').setup({
       --   If not available, we use `mini` as the fallback
       "rcarriga/nvim-notify",
     }
+  },
+
+  {
+    "rcarriga/nvim-notify",
+    config = function()
+      require('notify').setup({
+        background_colour = "#000000",
+      })
+    end,
   },
 
   {

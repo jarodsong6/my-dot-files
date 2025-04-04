@@ -9,14 +9,16 @@ vim.opt.hlsearch      = true
 vim.opt.ignorecase    = true
 vim.opt.autoread      = true
 vim.opt.binary        = true
-vim.opt.smarttab      = true                   --- Makes tabbing smarter will realize you have 2 vs 4
-vim.opt.smartindent   = true                   --- Makes indenting smart
-vim.opt.autoindent    = true                   --- Good auto indent
+vim.opt.smarttab      = true --- Makes tabbing smarter will realize you have 2 vs 4
+vim.opt.smartindent   = true --- Makes indenting smart
+vim.opt.autoindent    = true --- Good auto indent
 vim.opt.expandtab     = true
-vim.opt.tabstop       = 2                      --- Insert 2 spaces for a tab
-vim.opt.softtabstop   = 2                      --- Insert 2 spaces for a tab
-vim.opt.shiftwidth    = 2                      --- Change a number of space characeters inseted for indentation
-vim.opt.termguicolors = true                   --- Correct terminal colors
+vim.opt.tabstop       = 2    --- Insert 2 spaces for a tab
+vim.opt.softtabstop   = 2    --- Insert 2 spaces for a tab
+vim.opt.shiftwidth    = 2    --- Change a number of space characeters inseted for indentation
+vim.opt.termguicolors = true --- Correct terminal colors
+vim.opt.winblend      = 0
+vim.opt.pumblend      = 0
 vim.opt.hidden        = true                   --- Required to keep multiple buffers open multiple buffers
 vim.opt.cmdheight     = 2                      --- Give more space for displaying messages
 vim.opt.updatetime    = 300                    --- Faster completion
@@ -30,7 +32,7 @@ vim.opt.mouse         = ""
 vim.opt.breakindent   = true
 
 vim.o.foldcolumn      = '1' -- '0' is not bad
-vim.o.foldlevel       = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevel       = 99  -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart  = 99
 vim.o.foldenable      = true
 
@@ -104,7 +106,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = args.buf,
       callback = function()
-        vim.lsp.buf.format {async = false, id = args.data.client_id }
+        vim.lsp.buf.format { async = false, id = args.data.client_id }
       end,
     })
   end
