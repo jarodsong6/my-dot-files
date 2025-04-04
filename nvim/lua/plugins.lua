@@ -259,6 +259,19 @@ return require('lazy').setup({
   },
 
   {
+    "rachartier/tiny-devicons-auto-colors.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    },
+    event = "VeryLazy",
+    config = function()
+      require('tiny-devicons-auto-colors').setup({
+        colors = require("catppuccin.palettes").get_palette("frappe"),
+      })
+    end
+  },
+
+  {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function()
