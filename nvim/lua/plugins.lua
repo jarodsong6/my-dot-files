@@ -34,6 +34,37 @@ return require('lazy').setup({
       keymap("i", "<C-s>", "<Plug>(copilot-suggest)")
     end
   },
+  {
+    "olimorris/codecompanion.nvim",
+    config = true,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    strategies = {
+      chat = {
+        adapter = "copilot",
+      },
+      inline = {
+        adapter = "copilot",
+      },
+      agent = {
+        adapter = "copilot",
+      },
+    },
+    adapters = {
+      copilot = function()
+        return require("codecompanion.adapters").extend("copilot", {
+          name = "copilot",
+          schema = {
+            model = {
+              default = "claude-3.7-sonnet"
+            },
+          },
+        })
+      end,
+    },
+  },
 
 
   -- LSP, Cmp
