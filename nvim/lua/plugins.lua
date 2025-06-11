@@ -22,16 +22,28 @@ return require('lazy').setup({
   'RRethy/vim-illuminate',
   --  'Exafunction/codeium.vim',
   {
-    "github/copilot.vim",
-    lazy = false,
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter',
     config = function()
-      vim.g.copilot_no_tab_map = true
-      local keymap = vim.keymap.set
-      keymap("i", "<C-g>", 'copilot#Accept("<CR>")',
-        { silent = true, expr = true, script = true, replace_keycodes = false })
-      keymap("i", "<C-j>", "<Plug>(copilot-next)")
-      keymap("i", "<C-k>", "<Plug>(copilot-previous)")
-      keymap("i", "<C-s>", "<Plug>(copilot-suggest)")
+      require('copilot').setup({
+        suggestions = { enable = false },
+        panels = { enable = false },
+        server_opts_overrides = {
+          trace = 'verbose',
+          cmd = {
+            vim.fn.expand("~/.local/share/nvim/mason/bin/copilot-language-server"),
+            "--stdio"
+          },
+        },
+        filetypes = { ["*"] = true },
+      })
+    end
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup()
     end
   },
   {
@@ -48,7 +60,7 @@ return require('lazy').setup({
               name = "copilot",
               schema = {
                 model = {
-                  default = "claude-3.7-sonnet"
+                  default = "claude-sonnet-4"
                 },
               },
             })
@@ -116,6 +128,7 @@ return require('lazy').setup({
     config = function()
       require("mason-tool-installer").setup({
         ensure_installed = {
+          "copilot-language-server",
           { 'golangci-lint', version = 'v1.54.2' },
           "gopls",
           "pyright",

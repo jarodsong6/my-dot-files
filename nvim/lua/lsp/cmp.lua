@@ -48,6 +48,7 @@ cmp.setup({
     end, { "i", "s" }),
   },
   sources = cmp.config.sources({
+    { name = "copilot" },
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
   }, {
@@ -57,6 +58,7 @@ cmp.setup({
     format = lspkind.cmp_format({
       with_text = true,
       menu = ({
+        copilot = "[Copilot]",
         buffer = "[Buffer]",
         nvim_lsp = "[LSP]",
         vsnip = "[Snip]",
@@ -82,4 +84,3 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' }
   }),
 })
-
